@@ -1,0 +1,47 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" href="/"><img src="#" alt="買い物メモアプリ"></a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="bs-navi">
+    <ul class="navbar-nav">
+
+  <% if user_signed_in? %>
+
+
+      <li class="nav-item"><a class="nav-link" href="#">ホーム</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          アカウント情報
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">ユーザー情報編集</a>
+          <a class="dropdown-item" href="#">お気に入り商品登録</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">ログアウト</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        グループ情報
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">グループ一覧
+          </a>
+        </div>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="#">ヘルプ</a></li>
+
+  <% else %>
+
+    <li class="nav-item"><a class="nav-link" href="#">ホーム</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">ヘルプ</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">ログイン</a></li>
+
+  <% end %>
+
+　　　</ul>
+　　</div>
+
+</nav>
