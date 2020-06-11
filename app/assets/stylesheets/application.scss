@@ -16,3 +16,17 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+
+ * {
+   position: relative;
+   margin: 0;
+
+ body {
+   position: relative;
+   top:75px;
+  }
+ }
+
+ .navbar {
+   height: 75px;
+ }

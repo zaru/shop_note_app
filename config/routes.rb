@@ -4,8 +4,10 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'
   }
     root 'home#index'
+    get "/help", :to => "home#help"
 
   devise_scope :user do
+
     get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
     get "login", :to => "users/sessions#new"

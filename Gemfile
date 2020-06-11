@@ -11,6 +11,8 @@ gem 'rails', '~> 5.1.6'
 
 gem 'devise'
 
+gem 'rails-i18n'
+
 gem 'bootstrap', '~> 4.1.1'
 
 gem 'jquery-rails'
