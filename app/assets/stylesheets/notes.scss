@@ -1,0 +1,36 @@
+// Place all the styles related to the Notes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.i_content {
+  background-color: gray;
+}
+
+
+.destroy_many {
+  display: none;
+}
+
+ input:checked ~ .destroy_many {
+   display: block;
+ }
+
+ .note_form {
+   position: fixed;
+   top: 495px;
+   width: 100%;
+   height: 100px;
+   background-color: #333333;
+ }
+
+ .form {
+   position: relative;
+   left:465px;
+   top:10px;
+ }
+
+ .form_btn {
+   position: relative;
+   top:20px;
+   left:422px;
+ }

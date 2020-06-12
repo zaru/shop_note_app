@@ -1,0 +1,23 @@
+
+<%= form_with url: note_path do |f| %>
+  <% if @feed.present? %>
+    <% @feed.each do |i| %>
+
+    <%= i.user.name %>
+    <!-- <div class="i_content"> -->
+      <%= check_box_tag 'i[id][]', i.id, checked = false, :id => "note_#{i.id}" %>
+      <%= i.content %>
+    <!-- </div> -->
+    <div class="time"><%= i.created_at.to_s(:datetime) %></div>
+
+    <% end %>
+  <% else %>
+
+    <p>現在買うものはありません</p>
+
+  <% end %>
+
+  <div class = "destroy_many">
+        <%= f.submit '一括削除', class: 'btn btn btn-default' %>
+      </div>
+    <% end %>
