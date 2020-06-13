@@ -1,9 +1,7 @@
 
 <%= form_with url: notes_path do |f| %>
-  <div class = "form">
-    <%= f.text_field :content,class:'form-control', placeholder: "買うものを入力" %>
-  </div>
-  <div class = "form_btn">
+<div class=form_group>
+    <%= f.text_field :content,class:'form', placeholder: "買うものを入力" %>
     <%= f.submit "投稿", class: "btn btn-default" %>
-  </div>
+</div>
 <% end %>

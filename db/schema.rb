@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200610114456) do
+ActiveRecord::Schema.define(version: 20200613112846) do
 
   create_table "group_members", force: :cascade do |t|
     t.integer "user_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20200610114456) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin"
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20200610114456) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "group_id"
     t.index ["user_id"], name: "index_n_comments_on_user_id"
   end
 
@@ -55,7 +57,6 @@ ActiveRecord::Schema.define(version: 20200610114456) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

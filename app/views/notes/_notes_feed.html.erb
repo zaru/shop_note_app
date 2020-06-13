@@ -2,12 +2,14 @@
 <%= form_with url: note_path do |f| %>
   <% if @feed.present? %>
     <% @feed.each do |i| %>
-
+    <div class="note_user">
     <%= i.user.name %>
-    <!-- <div class="i_content"> -->
-      <%= check_box_tag 'i[id][]', i.id, checked = false, :id => "note_#{i.id}" %>
-      <%= i.content %>
-    <!-- </div> -->
+    </div>
+    <%= check_box_tag 'i[id][]', i.id, checked = false, :id => "note_#{i.id}" %>
+
+    <button type="button" class="btn btn-lite"><%= i.content %></button>
+
+
     <div class="time"><%= i.created_at.to_s(:datetime) %></div>
 
     <% end %>
