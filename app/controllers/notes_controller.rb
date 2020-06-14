@@ -1,6 +1,5 @@
 class NotesController < ApplicationController
 
-
   def create
     @user = User.find_by(params[:id])
     @note = @user.notes.build(note_params)

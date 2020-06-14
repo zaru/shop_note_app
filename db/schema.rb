@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200613112846) do
+ActiveRecord::Schema.define(version: 20200614085706) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "group_members", force: :cascade do |t|
     t.integer "user_id"
@@ -27,15 +36,6 @@ ActiveRecord::Schema.define(version: 20200613112846) do
     t.datetime "updated_at", null: false
     t.boolean "admin"
     t.index ["name"], name: "index_groups_on_name", unique: true
-  end
-
-  create_table "n_comments", force: :cascade do |t|
-    t.text "comment", limit: 20
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "group_id"
-    t.index ["user_id"], name: "index_n_comments_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|

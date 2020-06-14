@@ -17,9 +17,10 @@ Rails.application.routes.draw do
     post "notes", :to => "notes#create"
     post "count", :to => "notes#count"
     post "comment", :to => "comments#create"
+    delete "comments/:id",:to => "comments#destroy"
 
 
-    # resources :notes, only: [:create, :destroy]
+    # resources :comment, only: [:create, :destroy]
 
   end
 end

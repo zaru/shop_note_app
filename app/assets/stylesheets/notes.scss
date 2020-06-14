@@ -12,9 +12,23 @@
 
 //フィード
 
-.btn {
+.note {
+  font-size: 20px;
+  border-bottom: solid 1px black;
+}
+
+.comment {
+  font-size: 10px;
+}
+
+.comment_list {
+  list-style: none;
+  text-align: left;
+}
+
+.btn-lite {
   width: 200px;
-  height: 40px;
+  height: 100px;
 }
 
 .drop-hover:hover > .dropdown-menu {
