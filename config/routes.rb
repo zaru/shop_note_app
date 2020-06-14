@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     get "logout", :to => "users/sessions#destroy"
     post "note", :to => "notes#destroy"
     post "notes", :to => "notes#create"
+    post "count", :to => "notes#count"
+    post "comment", :to => "comments#create"
+
 
     # resources :notes, only: [:create, :destroy]
 

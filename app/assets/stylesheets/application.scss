@@ -17,6 +17,8 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
 
+// アプリ全体
+
  * {
    position: relative;
  }
@@ -28,6 +30,13 @@
    // background: linear-gradient(#1e3c72, #2a5298);
    top:75px;
  }
+
+.page_title {
+  text-align: center;
+}
+
+
+// ヘッダー、フッター
 
  .navbar {
    height: 75px;

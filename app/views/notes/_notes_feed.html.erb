@@ -6,8 +6,59 @@
     <%= i.user.name %>
     </div>
     <%= check_box_tag 'i[id][]', i.id, checked = false, :id => "note_#{i.id}" %>
+    <div class="dropdown">
+      <button type="button"
+        id="dropdown1"
+        class="btn btn-lite dropdown-toggle"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false">
+        <%= i.content %>
+      </button>
 
-    <button type="button" class="btn btn-lite"><%= i.content %></button>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdown1">
+        <li class="dropright drop-hover">
+          <div class="dropdown-item　dropdown-toggle" href="#"　data-toggle="dropdown">数量</div>
+          <ul class="dropdown-menu">
+             <li>
+             <%# <%= form_with url: count_path do |f| %>
+               <div class="form-group">
+                 <label for="Select">購入数</label>
+                   <select class="form-control" id="Select">
+                     <option>1</option>
+                     <option>2</option>
+                     <option>3</option>
+                     <option>4</option>
+                     <option>5</option>
+                     <option>6</option>
+                     <option>7</option>
+                     <option>8</option>
+                     <option>9</option>
+                     <option>10</option>
+                   </select>
+               </div>
+               <%# <%= f.submit '登録', class: 'btn btn btn-default' %>
+             <%# <% end %>
+
+             </li>
+          </ul>
+        </li>
+        <div class="dropdown-divider"></div>
+          <li class="dropdown drop-hover">
+            <div class="dropdown-item　dropdown-toggle" href="#"　data-toggle="dropdown">コメント</div>
+              <ul class="dropdown-menu">
+                <li>
+                  <div class="form-group">
+                    <label for="Textarea">コメント内容</label>
+                    <textarea class="form-control" id="Textarea" rows="3"></textarea>
+                  </div>
+                </li>
+              </ul>
+        </li>
+      </ul>
+    </div>
+
 
 
     <div class="time"><%= i.created_at.to_s(:datetime) %></div>
@@ -20,6 +71,6 @@
   <% end %>
 
   <div class = "destroy_many">
-        <%= f.submit '一括削除', class: 'btn btn btn-default' %>
+        <%= f.submit '購入済み', class: 'btn btn btn-default' %>
       </div>
     <% end %>

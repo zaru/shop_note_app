@@ -2,14 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+// 全体
+
 .note_feed {
   text-align: center;
 }
 
-.i_content {
-  background-color: gray;
+
+//フィード
+
+.btn {
+  width: 200px;
+  height: 40px;
 }
 
+.drop-hover:hover > .dropdown-menu {
+  display: block !important;
+}
+
+.drop-hover:hover > .dropdown-menu {
+  display: block !important;
+}
+
+//削除ボタン
 
 .destroy_many {
   display: none;
@@ -18,6 +34,9 @@
  input:checked ~ .destroy_many {
    display: block;
  }
+
+
+// 投稿フォーム
 
  .note_form {
    position: fixed;
