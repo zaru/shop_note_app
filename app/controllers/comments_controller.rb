@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   def create
+    @note = Note.find_by(params[:id])
+    @comment = @note.comment.build(comment_params)
+    @comment.user_id = @note.user_id
 
-    @user = User.find_by(params[:id])
-
-    @comment = @user.comment.build(comment_params)
     if @comment.save
       flash[:success] = "入力完了しました"
       redirect_to root_url
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
 
   private
     def  comment_params
-      params.permit(:url,:content)
+      params.permit(:content)
     end
 
 end

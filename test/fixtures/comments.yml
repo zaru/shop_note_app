@@ -2,12 +2,10 @@
 
 one:
   content: MyText
-  user_id: 1
-  group_id: 1
   user: one
+  note: one
 
 two:
   content: MyText
-  user_id: 1
-  group_id: 1
   user: two
+  note: two

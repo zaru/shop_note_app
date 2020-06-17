@@ -13,11 +13,11 @@
     <%= i.content %>
     </div>
     <div class="comment">
-        <% @comment.each do |c| %>
+        <% i.comments.each do |c| %>
           <li class="comment_list">
             <%= link_to c.content ,"/comments/#{c.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
-            <span> : </span>
-            <%= c.user.name %>
+            <!-- <span> : </span> -->
+            <%# <%= c.user.name %>
           </li>
         <% end%>
     </div>
@@ -40,7 +40,7 @@
 
   <% end %>
 
-  <div class = "destroy_many">
+  <div class = "destroy">
         <%= f.submit '購入済み', class: 'btn btn btn-primary' %>
       </div>
 <% end %>
