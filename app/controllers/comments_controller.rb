@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   def create
     @note = Note.find_by(params[:id])
-    @comment = @note.comment.build(comment_params)
-    @comment.user_id = @note.user_id
+    # binding.pry
+    @comment = @note.comments.build(comment_params)
+    @comment.user_id = current_user.id
 
     if @comment.save
       flash[:success] = "入力完了しました"
