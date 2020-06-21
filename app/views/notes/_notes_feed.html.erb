@@ -1,0 +1,116 @@
+
+<%= form_with url: note_path do |f| %>
+  <% if @feed.present? %>
+    <% @feed.each do |i| %>
+
+      <div class="note_user">
+        <%= i.user.name %>
+      </div>
+
+      <%= check_box_tag 'i[id][]', i.id, checked = false, :id => "note_#{i.id}" %>
+
+      <button type="button" class="btn lite">
+        <div class="note">
+          <%= i.content %>
+          <%= i.count %>個
+        </div>
+        <div class="comment">
+          <% i.comments.each do |c| %>
+            <li class="comment_list">
+              <%= link_to c.content ,"/comments/#{c.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+              <span> : </span>
+              <%= i.user.name %>
+            </li>
+
+          <% end %>
+        </div>
+      </button>
+
+      <button type="button" class="btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" >数量</button>
+
+      <button type="button" class="btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" >コメント入力</button>
+
+      <div class="time"><%= i.created_at.to_s(:datetime) %></div>
+
+    <% end %>
+  <% else %>
+
+    <p>現在買うものはありません</p>
+
+  <% end %>
+
+  <div class = "destroy">
+
+    <%= f.submit '購入済み', class: 'btn btn btn-primary' %>
+
+  </div>
+
+<% end %>
+
+
+
+<!-- 数量入力用モーダル -->
+<div class="modal fade" id="count_Modal" tabindex="-1" role="dialog" aria-labelledby="count_ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_with url: count_path do |f| %>
+        <h4 class="modal-title" id="comment_ModalLabel">数量入力欄</h4>
+          <div class="modal-body">
+
+            <%= f.select :count, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]],
+            { include_blank: true, selected: 1 }, { id: "user_id", class: "user_class" } %>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">戻る</button>
+            <%= f.submit "投稿する", class: "btn btn-primary" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- コメント入力用モーダル -->
+
+<div class="modal fade" id="comment_Modal" tabindex="-1" role="dialog" aria-labelledby="comment_ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%# <%= form_with url: comment_path do |f| %>
+      <%= form_with model: @comment do |f| %>
+        <h4 class="modal-title" id="comment_ModalLabel">コメント入力欄</h4>
+          <div class="modal-body">
+
+              <%# <%= f.hidden_field :id, :value => f.id %>
+
+              <%= f.text_area :content, size: "10x5", class: "form-control" %>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">戻る</button>
+            <%= f.submit "投稿する", class: "btn btn-primary" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+  $('#count_Modal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var recipient = button.data('whatever')
+
+    var modal = $(this)
+    modal.find('.modal-body input#recipient-name').val(recipient)
+  })
+
+$('#comment_Modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget)
+  var recipient = button.data('whatever')
+
+  var modal = $(this)
+  modal.find('.modal-body input#recipient-name').val(recipient)
+})
+
+</script>

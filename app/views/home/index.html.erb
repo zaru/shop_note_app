@@ -1,2 +1,18 @@
+<%if user_signed_in? %>
 
-<p>買い物リスト</p>
+  <div class="page_title">買い物リスト</div>
+
+  <div class= "note_feed">
+   <%= render 'notes/notes_feed' %>
+  </div>
+  <div class= "note_form">
+   <%= render 'notes/notes_form' %>
+  </div>
+
+<% else %>
+
+<p>買い物メモアプリへようこそ</p>
+
+<h2>まずは<%= link_to "コチラ",signup_path %>から新規登録！</h2>
+
+<% end %>

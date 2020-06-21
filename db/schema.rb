@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200610114456) do
+ActiveRecord::Schema.define(version: 20200614114814) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "note_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_comments_on_note_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "group_members", force: :cascade do |t|
     t.integer "user_id"
@@ -23,17 +34,10 @@ ActiveRecord::Schema.define(version: 20200610114456) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name", null: false
+    t.boolean "group_admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_groups_on_name", unique: true
-  end
-
-  create_table "n_comments", force: :cascade do |t|
-    t.text "comment", limit: 20
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_n_comments_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -47,6 +51,7 @@ ActiveRecord::Schema.define(version: 20200610114456) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -54,8 +59,6 @@ ActiveRecord::Schema.define(version: 20200610114456) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
