@@ -9,10 +9,7 @@
 
   <% if user_signed_in? %>
 
-      <li class="nav-item"><a class= "nav-link" <%= link_to "新規登録",edit_user_registration_path(current_user) %>
-        <%= current_user.name %>
-        </a>
-      </li>
+      <li class="nav-item"><a class="nav-link" href="users/edit"><%= current_user.name %>さんがログイン中</a></li>
       <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,8 +28,18 @@
         グループ情報
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">グループ一覧
-          </a>
+          <a class="dropdown-item" <%= link_to "グループ作成",new_group_path %></a>
+          <% if @groups.present? %>
+
+            <p>グループ一覧</p>
+            <% @groups.each do |group| %>
+            <ul>
+            <li class="nav_link"> <%= link_to group.name,edit_group_path(group.id) %></li><br>
+            </ul>
+
+            <% end %>
+          <% end %>
+
         </div>
       </li>
       <li class="nav-item"><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>

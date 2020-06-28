@@ -1,10 +1,12 @@
-<p>グループ作成</p>
+<p>グループ情報編集</p>
 
 <p>下記項目を入力して送信ボタンを押してください</p>
 
 <div class = "group_form">
 
-  <%= form_with url: groups_path do |f| %>
+  <%= form_with url: @group do |f| %>
+
+
 
     <%= f.label :"名前" %>
     <%= f.text_field :name, class:'form-control' %>
@@ -14,6 +16,8 @@
 
 
     <%= f.submit "ユーザー登録完了", class:"btn btn_primary" %>
+
+    <%# <% binding.pry %> %>
 
   <% end %>
 

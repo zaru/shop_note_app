@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post "count", :to => "notes#count"
     post "comment", :to => "comments#create"
     delete "comments/:id",:to => "comments#destroy"
+    post "groups/:id/",:to => "groups#update"
 
 
     resources :groups
