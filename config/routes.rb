@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     delete "comments/:id",:to => "comments#destroy"
 
 
-    # resources :comment, only: [:create, :destroy]
+    resources :groups
 
   end
 end

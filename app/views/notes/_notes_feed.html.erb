@@ -75,15 +75,15 @@
 <div class="modal fade" id="comment_Modal" tabindex="-1" role="dialog" aria-labelledby="comment_ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <%# <%= form_with url: comment_path do |f| %>
-      <%= form_with model: @comment do |f| %>
+      <%= form_with url: comment_path do |f| %>
+  
         <h4 class="modal-title" id="comment_ModalLabel">コメント入力欄</h4>
           <div class="modal-body">
 
               <%# <%= f.hidden_field :id, :value => f.id %>
 
               <%= f.text_area :content, size: "10x5", class: "form-control" %>
-
+　　　　　　　　
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">戻る</button>
