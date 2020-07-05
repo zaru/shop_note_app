@@ -1,0 +1,21 @@
+<p><%= "ルーム名：#{@room.name}" %></p>
+
+<p>グループメンバー</p>
+
+<% @members.each do |member| %>
+  <ul>
+    <li><%= member.name %></li>
+  </ul>
+<% end %>
+
+<div class="group_notes">
+
+<p>投稿一覧</p>
+
+  <% @notes.each do |note| %>
+
+  <%= note.content %>
+
+<% end %>
+
+</div>

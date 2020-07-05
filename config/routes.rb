@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     delete "comments/:id",:to => "comments#destroy"
     post "groups/:id/",:to => "groups#update"
 
-
     resources :groups
 
   end

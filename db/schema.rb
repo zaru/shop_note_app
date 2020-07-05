@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20200628042321) do
   end
 
   create_table "group_members", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "group_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_members_on_group_id"
+    t.index ["user_id"], name: "index_group_members_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(version: 20200628042321) do
     t.text "content", null: false
     t.integer "count"
     t.integer "user_id"
+    t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_notes_on_user_id_and_created_at"
