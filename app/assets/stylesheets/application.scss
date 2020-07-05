@@ -31,12 +31,15 @@
    top:75px;
  }
 
+ ul {
+   list-style: none;
+ }
+
+// ヘッダー、フッター
+
 .page_title {
   text-align: center;
 }
-
-
-// ヘッダー、フッター
 
  .navbar {
    height: 75px;

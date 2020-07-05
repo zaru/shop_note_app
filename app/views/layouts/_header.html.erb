@@ -31,13 +31,24 @@
           <a class="dropdown-item" <%= link_to "グループ作成",new_group_path %></a>
           <% if @groups.present? %>
 
-            <p>グループ一覧</p>
-            <% @groups.each do |group| %>
-            <ul>
-            <li class="nav_link"> <%= link_to group.name,edit_group_path(group.id) %></li><br>
-            </ul>
+            <div class="dropdown-divider"></div>
+            <nav>トークルーム</nav>
+              <% @groups.each do |group| %>
+                <ul>
+                  <li class="nav_link"><%= link_to group.name,group_path(group.id) %>
+                    <span class="delete_link"><%= link_to "削除", group_path(group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></span>
+                  </li>
+                </ul>
+              <% end %>
 
-            <% end %>
+          <div class="dropdown-divider"></div>
+          <nav>グループ情報編集</nav>
+              <% @groups.each do |group| %>
+                <ul>
+                  <li class="nav_link"> <%= link_to group.name,edit_group_path(group.id) %></li>
+                </ul>
+              <% end %>
+
           <% end %>
 
         </div>

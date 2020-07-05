@@ -4,7 +4,6 @@ class NotesController < ApplicationController
     @user = User.find_by(id: current_user.id)
     @note = @user.notes.build(note_params)
     if @note.save
-      flash[:success] = "投稿しました"
       redirect_to root_url
     else
       @feed = []
@@ -14,10 +13,7 @@ class NotesController < ApplicationController
   end
 
   def count
-    # @note = Note.find_by(params[:id])
     @count = current_user.notes.build(count_params)
-    binding.pry
-    # @note.count = @count.to_i
     if @count.save
       flash[:success] = "投稿しました"
       redirect_to root_url
@@ -29,8 +25,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
-
-    params[:i][:id].each do |note_id|
+    params[:feed][:id].each do |note_id|
       Note.find_by(id: note_id).delete
     end
     redirect_to request.referrer || root_url

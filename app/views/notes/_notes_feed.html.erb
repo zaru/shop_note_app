@@ -1,36 +1,36 @@
-
 <%= form_with url: note_path do |f| %>
   <% if @feed.present? %>
-    <% @feed.each do |i| %>
-
-      <div class="note_user">
-        <%= i.user.name %>
+    <% @feed.each do |feed| %>
+      <div class="notes_user_name">
+        <%= feed.user.name %>
       </div>
 
-      <%= check_box_tag 'i[id][]', i.id, checked = false, :id => "note_#{i.id}" %>
+      <%= check_box_tag 'feed[id][]', feed.id, checked = false, :id => "note_#{feed.id}" %>
 
       <button type="button" class="btn lite">
-        <div class="note">
-          <%= i.content %>
-          <%= i.count %>個
-        </div>
-        <div class="comment">
-          <% i.comments.each do |c| %>
-            <li class="comment_list">
-              <%= link_to c.content ,"/comments/#{c.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
-              <span> : </span>
-              <%= i.user.name %>
-            </li>
-
+        <div class="note_content">
+          <%= feed.content %>
+          <%= feed.count %>
+          <% if feed.count.present? %>
+            <p>個</p>
           <% end %>
         </div>
+        <div class="comment">
+          <% feed.comments.each do |comment| %>
+            <li class="comment_list">
+              <%= link_to comment.content ,"/comments/#{c.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+              <span> : </span>
+              <%= feed.user.name %>
+            </li>
+          <% end %>
+          </div>
       </button>
 
-      <button type="button" class="btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" >数量</button>
+      <button type="button" class="btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" value="<%= feed.id %>" id="js_count" >数量</button>
 
-      <button type="button" class="btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" >コメント入力</button>
+      <button type="button" class="btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" value="<%= feed.id %>" id="js_comment">コメント入力</button>
 
-      <div class="time"><%= i.created_at.to_s(:datetime) %></div>
+      <div class="time"><%= feed.created_at.to_s(:datetime) %></div>
 
     <% end %>
   <% else %>
@@ -40,9 +40,7 @@
   <% end %>
 
   <div class = "destroy">
-
     <%= f.submit '購入済み', class: 'btn btn btn-primary' %>
-
   </div>
 
 <% end %>
@@ -56,6 +54,8 @@
       <%= form_with url: count_path do |f| %>
         <h4 class="modal-title" id="comment_ModalLabel">数量入力欄</h4>
           <div class="modal-body">
+
+            <%= hidden_field_tag :count_id, "", {id:"count_id"} %>
 
             <%= f.select :count, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]],
             { include_blank: true, selected: 1 }, { id: "user_id", class: "user_class" } %>
@@ -76,11 +76,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%= form_with url: comment_path do |f| %>
-  
+
         <h4 class="modal-title" id="comment_ModalLabel">コメント入力欄</h4>
           <div class="modal-body">
 
-              <%# <%= f.hidden_field :id, :value => f.id %>
+              <%= hidden_field_tag :count_id, "", {id:"comment_id"} %>
 
               <%= f.text_area :content, size: "10x5", class: "form-control" %>
 　　　　　　　　
