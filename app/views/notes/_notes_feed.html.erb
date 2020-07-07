@@ -26,6 +26,7 @@
       </button>
       <button type="button" class="btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" value="<%= feed.id %>" id="js_count">数量</button>
       <button type="button" class="btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" value="<%= feed.id %>" id="js_comment">コメント入力</button>
+
       <div class="time"><%= feed.created_at.to_s(:datetime) %></div>
     <% end %>
   <% else %>
@@ -42,7 +43,7 @@
       <%= form_with url: count_path do |f| %>
         <h4 class="modal-title" id="comment_ModalLabel">数量入力欄</h4>
         <div class="modal-body">
-          <%= hidden_field_tag :count_id, "", {id: "count_id"} %>
+          <%= hidden_field_tag :note_id, "", {id: "note_id"} %>
           <%= f.select :count, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]],
                        { include_blank: true, selected: 1 }, { id: "user_id", class: "user_class" } %>
         </div>
@@ -61,7 +62,7 @@
       <%= form_with url: comment_path do |f| %>
         <h4 class="modal-title" id="comment_ModalLabel">コメント入力欄</h4>
         <div class="modal-body">
-          <%= hidden_field_tag :comment_id, "", {id: "comment_id"} %>
+          <%= hidden_field_tag :note_id, "", {id: "note_id"} %>
           <%= f.text_area :content, size: "10x5", class: "form-control" %>
         </div>
         <div class="modal-footer">
@@ -76,10 +77,12 @@
 
   $('#count_Modal').on('click', function () {
     var value = $('#js_count').val();
-    $('#count_id').val(value);
+    // alert(value)
+    $('#note_id').val(value);
   })
   $('#comment_Modal').on('click', function () {
     var value = $('#js_comment').val();
-    $('#comment_id').val(value);
+    // alert(value)
+    $('#note_id').val(value);
   })
 </script>
