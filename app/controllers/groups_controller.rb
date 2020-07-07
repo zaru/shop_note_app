@@ -6,10 +6,14 @@ class GroupsController < ApplicationController
     if @group.save
       @group.group_members.build(user_id: current_user.id).save
       flash[:success]= "グループを作成しました"
-      redirect_to request.referrer || root_url
+      redirect_to group_path(@group)
     else
       render 'groups/new'
 　　 end
+  end
+
+  def invite
+    binding.pry
   end
 
   def edit

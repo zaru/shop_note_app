@@ -19,8 +19,10 @@ Rails.application.routes.draw do
     post "comment", :to => "comments#create"
     delete "comments/:id",:to => "comments#destroy"
     post "groups/:id/",:to => "groups#update"
+    get "find",:to => "seaches#find"
 
     resources :groups
+    resources :seaches
 
   end
 end

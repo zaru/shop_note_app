@@ -12,9 +12,7 @@
       <li class="nav-item"><a class="nav-link" href="users/edit"><%= current_user.name %>さんがログイン中</a></li>
       <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          アカウント情報
-        </a>
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">アカウント情報</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class= "dropdown-item"<%= link_to "ユーザー情報編集",edit_user_registration_path(current_user) %></a>
           <a class= "dropdown-item"<%= link_to "お気に入り商品登録","#" %></a>
@@ -24,9 +22,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        グループ情報
-        </a>
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">グループ情報</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" <%= link_to "グループ作成",new_group_path %></a>
           <% if @groups.present? %>
@@ -48,9 +44,13 @@
                   <li class="nav_link"> <%= link_to group.name,edit_group_path(group.id) %></li>
                 </ul>
               <% end %>
-
           <% end %>
-
+        </div>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー招待</a>
+        <div class="dropdown-menu" id="invite" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" <%= link_to "ユーザー検索",seaches_path %></a>
+          <a class="dropdown-item" <%= link_to "招待メール","#" %></a>
         </div>
       </li>
       <li class="nav-item"><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>

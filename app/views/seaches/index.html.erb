@@ -1,0 +1,49 @@
+
+  <p>ユーザー一覧</p>
+
+  <% if @users.present? %>
+
+    <% @users.each do |user| %>
+
+      <p><%= user.name %></p>
+
+    <% end %>
+
+  <% else %>
+
+  <p>現在登録中のユーザーは存在しません</p>
+
+  <% end %>
+
+
+  <%# <% if user.id != current_user %>
+
+    <%# <%= form_with url: seaches_path do |f| %>
+
+    <%# <%= f.collection_select(:seaches, @groups, :id, :name) %>
+
+    <%# <%= f.submit "招待する", class: "btn btn-primary" %>
+
+    <%# <% end %>
+
+
+
+
+
+    <%# <select class='group' id=<%= "#{user.id}" %>
+
+      <!-- <option value="0">グループへ招待</option> -->
+
+      <%# <% @groups.each do |group| %>
+
+
+
+      <%# <% end %>
+
+      <!-- </select> -->
+
+<div class="forms">
+
+  <%= render 'seaches/seaches_form' %>
+
+</div>

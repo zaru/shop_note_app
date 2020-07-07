@@ -13,7 +13,8 @@ class NotesController < ApplicationController
   end
 
   def count
-    @count = current_user.notes.build(count_params)
+    @count = Note.find(params[:count_id])
+    @count.count = params[:count]
     if @count.save
       flash[:success] = "投稿しました"
       redirect_to root_url
@@ -38,6 +39,6 @@ class NotesController < ApplicationController
     end
 
   def count_params
-    params.permit(:count,:note_id)
+    params.permit(:count)
   end
 end
