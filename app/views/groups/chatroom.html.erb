@@ -1,0 +1,107 @@
+<div class="feed">
+
+<p><%= "ルーム名：#{@group.name}" %></p>
+
+<p>グループメンバー</p>
+
+<% @members.each do |member| %>
+    <%= member.name %>
+<% end %>
+
+<p>投稿一覧</p>
+
+<%= form_with url: note_path do |f| %>
+  <% if @group_feed.present? %>
+    <% @group_feed.each do |feed| %>
+      <div class="note_user">
+        <%= feed.user.name %>
+      </div>
+      <%= check_box_tag 'feed[id][]', feed.id, checked = false, :id => "note_#{feed.id}" %>
+      <button type="button" class="btn lite">
+        <div class="note">
+          <%= feed.content %>
+          <%= feed.count %>
+          <% if feed.count.present? %>
+            <span>個</span>
+          <% end %>
+        </div>
+        <div class="comment">
+          <% feed.comments.each do |c| %>
+            <li class="comment_list">
+              <%= link_to c.content ,"/comments/#{c.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+              <span> : </span>
+              <%= feed.user.name %>
+            </li>
+          <% end %>
+        </div>
+      </button>
+      <button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" value="<%= feed.id %>" id="js_count">数量</button>
+      <button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" value="<%= feed.id %>" id="js_comment btn2">メモ</button>
+      <div class="time"><%= feed.created_at.to_s(:datetime) %></div>
+    <% end %>
+  <% else %>
+    <p>現在買うものはありません</p>
+  <% end %>
+  <div class = "destroy">
+    <%= f.submit '購入済み', class: 'btn btn btn-primary' %>
+  </div>
+<% end %>
+<!-- 数量入力用モーダル -->
+<div class="modal fade" id="count_Modal" tabindex="-1" role="dialog" aria-labelledby="count_ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_with url: count_path do |f| %>
+        <h4 class="modal-title" id="comment_ModalLabel">数量入力欄</h4>
+        <div class="modal-body">
+          <%= hidden_field_tag :note_id, "", {id: "count_id"} %>
+          <%= f.select :count, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]],
+                       { include_blank: true, selected: 1 }, { id: "user_id", class: "user_class" } %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">戻る</button>
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- コメント入力用モーダル -->
+<div class="modal fade" id="comment_Modal" tabindex="-1" role="dialog" aria-labelledby="comment_ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_with url: comment_path do |f| %>
+        <h4 class="modal-title" id="comment_ModalLabel">コメント入力欄</h4>
+        <div class="modal-body">
+          <%= hidden_field_tag :note_id, "", {id: "comment_id"} %>
+          <%= f.text_area :content, size: "10x5", class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">戻る</button>
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.js_count_btn').click(function() {
+    $('#count_id').val(this.value);
+  });
+  $('.js_comment_btn').on('click', function () {
+    $('#comment_id').val(this.value);
+  })
+</script>
+
+</div>
+
+<div class="forms">
+  <%= form_with url: notes_path do |f| %>
+
+  <div class="form_group">
+      <%= f.hidden_field :group_id, :value => @group.id %>
+      <%= f.text_field :content,class:'form', placeholder: "買うものを入力" %>
+      <%= f.submit "投稿", class: "btn btn-default" %>
+  </div>
+  <% end %>
+</div>
