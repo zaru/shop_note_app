@@ -16,6 +16,8 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+ @import "font-awesome";
+
 
 // アプリ全体
 
@@ -45,8 +47,9 @@
    height: 75px;
  }
 
-#invite {
-  
+.i {
+   position: relative;
+   bottom:20px;
 }
 
 

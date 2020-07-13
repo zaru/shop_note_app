@@ -25,34 +25,35 @@
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">グループ情報</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" <%= link_to "グループ作成",new_group_path %></a>
-          <% if @groups.present? %>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" <%= link_to "所属グループ一覧",groups_path %></a>
 
+        <a class="dropdown-item" <%= link_to  request_list_groups_path, method: :get do %>
+          グループリクエスト一覧
+          <i class="fa fa-exclamation-circle"></i></a>
+          <% end %>
+
+
+          <% if @groups.present? %>
             <div class="dropdown-divider"></div>
             <nav>トークルーム</nav>
               <% @groups.each do |group| %>
                 <ul>
-                  <li class="nav_link"><%= link_to group.name,group_path(group.id) %>
+                  <li class="nav_link"><%= link_to group.name,chatroom_group_path(group.id) %>
+                  <%# <!-- <li class="nav_link"><%= link_to group.name,"/groups/chatroom/#{group.id}" %>
                     <span class="delete_link"><%= link_to "削除", group_path(group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></span>
                   </li>
                 </ul>
               <% end %>
 
-          <div class="dropdown-divider"></div>
-          <nav>グループ情報編集</nav>
-              <% @groups.each do |group| %>
-                <ul>
-                  <li class="nav_link"> <%= link_to group.name,edit_group_path(group.id) %></li>
-                </ul>
-              <% end %>
-          <% end %>
+　　　　　　<% end %>
         </div>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー招待</a>
-        <div class="dropdown-menu" id="invite" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" <%= link_to "ユーザー検索",seaches_path %></a>
-          <a class="dropdown-item" <%= link_to "招待メール","#" %></a>
-        </div>
-      </li>
+          <div class="dropdown-menu" id="invite" aria-labelledby="navbarDropdown">
+            <%# <a class="dropdown-item" <%= link_to "招待メール","#" %></a> %>
+          </div>
+        </li> -->
       <li class="nav-item"><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>
 
   <% else %>

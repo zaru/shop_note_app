@@ -5,7 +5,7 @@
 
 // 全体
 
-.note_feed {
+.feed {
   position: relative;
   top: 10px;
   padding-bottom: 200px;
@@ -30,9 +30,8 @@
   text-align: left;
 }
 
-.btn-lite {
-  width: 200px;
-  height: 100px;
+.lite {
+  width: 150px;
 }
 
 .drop-hover:hover > .dropdown-menu {

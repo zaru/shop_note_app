@@ -4,4 +4,8 @@ class Group < ApplicationRecord
   has_many :notes, dependent: :destroy
   accepts_nested_attributes_for :group_members
 
+  def find
+    @groups = current_user.groups.wherez
+  end
+
 end
