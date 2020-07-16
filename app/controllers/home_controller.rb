@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user.present?
-      @own_feed = current_user.notes
+      @own_notes = current_user.notes
     else
       flash[:danger] ="ログインしてください"
       redirect_to login_path

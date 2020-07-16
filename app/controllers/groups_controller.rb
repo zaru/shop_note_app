@@ -1,14 +1,15 @@
 class GroupsController < ApplicationController
 
   def index
-    @groups = Group.all
+    @user = User.find_by(id: current_user.id)
+    @groups = @user.groups.where(params[:id])
   end
 
   def create
     @group = Group.new(group_params)
     @group.admin_user_id = current_user.id
     if @group.save
-      @group.group_members.build(user_id: current_user.id).save
+      @group.group_members.build(user_id: current_user.id,activated: true).save
       flash[:success]= "グループを作成しました"
       redirect_to group_path(@group)
     else
@@ -22,8 +23,7 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-     if @group.update(name:params[:group][:name],profile:params[:group][:profile])
-       binding.pry
+     if @group.update(name:params[:group][:name],profile:params[:group][:profile],image:params[:group][:image])
        redirect_to group_path(@group)
      else
        render 'groups/edit'
@@ -62,7 +62,7 @@ class GroupsController < ApplicationController
 
   def chatroom
     @group = Group.find(params[:id])
-    @group_feed = Note.where(group_id: @group.id)
+    @group_notes = Note.where(group_id: @group.id)
     @members = @group.users.select(:name)
   end
 
@@ -75,7 +75,7 @@ class GroupsController < ApplicationController
   private
 
     def group_params
-      params.permit(:name,:profile)
+      params.permit(:name,:profile,:image)
     end
 
     def join_params

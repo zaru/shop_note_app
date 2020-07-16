@@ -1,19 +1,22 @@
-<h3>グループ名:<%= @group.name %></h3>
+  <ul class="group_info">
+  <li><h3>グループ名:<%= @group.name %></h3></li>
+  <li><img src= <%= @group.image %> class= "image_icon" alt="/assets/default_group_icon.png"></li>
+</ul>
 
-<h4>グループプロフィール</h4>
-<div class="group_plofile">
-  <%= @group.profile %>
-</div>
+　<p>グループプロフィール</p>
+    <div class="group_profile">
+      <%= @group.profile %>
 
-<h3>所属メンバー名</h3>
-  <% @members.each do |member| %>
-    <ul>
-      <li><%= member.name %></li>
-    </ul>
+    </div>
 
-<a class= "dropdown-item"<%= link_to "ユーザー情報編集",edit_group_path(@group.id) %></a>
+    <%= link_to "グループ情報編集",edit_group_path(@group.id) %>
 
-  <% end %>
+  <h3>所属メンバー名</h3>
+    <% @members.each do |member| %>
+      <ul>
+        <li><%= member.name %></li>
+      </ul>
+    <% end %>
 
   <div class="forms">
     <%= render 'searches/searches_form' %>

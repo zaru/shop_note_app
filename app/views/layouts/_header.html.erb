@@ -12,15 +12,16 @@
       <li class="nav-item"><a class="nav-link" <%= link_to "#{current_user.name}さんがログイン中",edit_user_registration_path(current_user) %></a></li>
       <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">アカウント情報</a>
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー情報</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class= "dropdown-item"<%= link_to "ユーザー情報編集",edit_user_registration_path(current_user) %></a>
           <a class= "dropdown-item"<%= link_to "お気に入り商品登録","#" %></a>
           <div class="dropdown-divider"></div>
-
+          <a class= "dropdown-item"<%= link_to "ユーザー一覧",users_index_path %></a>
+          <div class="dropdown-divider"></div>
           <a class= "dropdown-item"<%= link_to "ログアウト",logout_path %></a>
         </div>
-      </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">グループ情報</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,8 +31,13 @@
 
         <a class="dropdown-item" <%= link_to  request_list_groups_path, method: :get do %>
           グループリクエスト一覧
-          <i class="fa fa-exclamation-circle"></i></a>
+
+          <% if @request.present? %>
+            <i class="fa fa-exclamation-circle"></i>　<%= @request.count %>件</a>
           <% end %>
+
+
+  <% end %>
 
 
           <% if @groups.present? %>

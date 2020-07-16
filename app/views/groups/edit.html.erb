@@ -5,19 +5,25 @@
 
 <div class = "group_form">
 
-  <%= form_with(model: @group, local: true) do |f| %>
+  <%= form_with model: @group do |f| %>
 
+    <div>
+      <%= f.label :"名前" %>
+      <%= f.text_field :name, class:'form-control' %>
+    </div>
 
+    <div>
+      <%= f.label :"グループプロフィール" %>
+      <%= f.text_area :profile, class:'form-control' %>
+    </div>
 
-    <%= f.label :"名前" %>
-    <%= f.text_field :name, class:'form-control' %>
-
-    <%= f.label :"グループプロフィール" %>
-    <%= f.text_area :profile, class:'form-control' %>
-
-
-    <%= f.submit "ユーザー登録完了", class:"btn btn_primary" %>
-
+    <div>
+      <%= f.label :"グループアイコン" %>
+      <%= f.file_field :image %>
+    </div>
+    <div>
+      <%= f.submit "グループ情報変更", class:"btn btn_primary" %>
+    </div>
   <% end %>
 
 </div>
