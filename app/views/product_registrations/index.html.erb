@@ -1,0 +1,27 @@
+
+<p>お気に入り商品一覧</p>
+
+<%= form_with url: bluk_posting_product_registrations_path do |f| %>
+
+  <% @product_registrations.each do |product| %>
+    <div class="product_list">
+      <%= check_box_tag 'product[id][]', product.id, checked = false, :id => "product_#{product.id}" %>
+      <%= link_to product.name ,product_registration_path(product.id), method: :delete,data:{confirm: "本当に削除しますか?"} %>
+    </div>
+  <% end %>
+　　　<div class="bluk_posting_button">
+  <%= f.submit "商品をまとめて投稿",class:"btn btn_primary" %>
+     </div>
+<% end %>
+
+<div class= "forms">
+  <div class="form_title">一覧に追加したい商品を入力してください</div>
+
+  <%= form_with model: @product_registration do |f| %>
+    <div class = "form_body">
+    <%= f.text_area :name,placeholder:'商品名を入力(複数ある場合は","で区切る)' %>
+
+    <%= f.submit "登録",class:"btn btn_primary" %>
+    </div>
+  <% end %>
+</div>

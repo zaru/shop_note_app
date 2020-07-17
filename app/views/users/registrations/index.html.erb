@@ -1,0 +1,14 @@
+<p>ユーザー一覧</p>
+
+<% @user.each do |user| %>
+
+  <ul>
+  <li><%= user.name %></li>
+  <li><img src= <%= user.image %> class= "image_icon" alt="/assets/default_user_icon.jpg" ></li>
+</ul>
+
+
+
+<% end %>
+
+<%= paginate @user %>
