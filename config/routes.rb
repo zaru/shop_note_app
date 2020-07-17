@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'users/index', to: 'users/registrations#index'
     root 'home#index'
     get "/help", :to => "home#help"
-    # get "user/:id", :to => "users/registrations#detail"
+    get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
@@ -30,7 +30,12 @@ Rails.application.routes.draw do
         post :invite
         post :invite_reset
         post :join
+      end
+    end
 
+    resources :product_registrations, only: [:index,:create,:destroy]  do
+      collection do
+        post :bluk_posting
       end
     end
 

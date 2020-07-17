@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :現在のパスワード %> <i>(ユーザー認証のため必ず入力してください)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.password_field :current_password, autocompletSe: "current-password" %>
   </div>
 
   <div>
@@ -41,15 +41,13 @@
     <%= f.file_field :image %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "ユーザー情報変更" %>
-  </div>
+  <div class="action"><br/>
+    <%= f.submit "ユーザー情報変更",class:"btn btn_primary" %>
+  </div><br  />
 <% end %>
 
 <h4>アカウント削除</h4>
 
-<p>※一度削除したアカウントは元に戻せません<br />
+<p>※一度削除したアカウントは元に戻せません<br/>
 希望の方は下記ボタンをクリックしてください
-<%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除しますか?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除しますか?" }, method: :delete, class:"btn btn_warningS" %></p>

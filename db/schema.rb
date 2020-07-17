@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200714092035) do
+ActiveRecord::Schema.define(version: 20200716020924) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20200714092035) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_notes_on_user_id_and_created_at"
+  end
+
+  create_table "product_registrations", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_product_registrations_on_group_id"
+    t.index ["user_id"], name: "index_product_registrations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

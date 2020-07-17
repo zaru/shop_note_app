@@ -8,7 +8,7 @@
 
           <div>
             <%= note.user.name %>
-          　<img src=<%= note.user.image %> class = "image_icon" >
+          　<img src="<%= note.group.image %>" class="image_icon" alt="" >
 　　　　　　</div>
 
           <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id}" %>
