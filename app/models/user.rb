@@ -9,6 +9,6 @@ class User < ApplicationRecord
   has_many :group_members
   has_many :groups, through: :group_members
   has_many :product_registrations, dependent: :destroy
-  mount_uploader :image, ImageUploader
 
+  mount_uploader :image, ImageUploader
 end

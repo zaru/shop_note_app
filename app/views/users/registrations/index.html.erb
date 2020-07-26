@@ -4,11 +4,24 @@
 
   <ul>
   <li><%= user.name %></li>
-  <li><img src= <%= user.image %> class= "image_icon" alt="/assets/default_user_icon.jpg" ></li>
+  <% if user.image.present? %>
+    <li><img src= "<%= user.image %>" class="image_icon"></li>
+  <% else %>
+    <li><img src= "/assets/default_user_icon.jpg" class="image_icon"></li>
+  <% end %>
 </ul>
-
-
 
 <% end %>
 
 <%= paginate @user %>
+
+<div class="forms">
+  <div class="form_title">招待したいユーザーを検索</div>
+
+  <%= form_with url: index_path, method: :get, local: true do |f| %>
+  <div class="form_body">
+      <%= f.text_field :name,class:'form', placeholder: "ユーザー名を入力" %>
+      <%= f.submit "検索", class: "btn btn-default" %>
+  </div>
+  <% end %>
+</div>

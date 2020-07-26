@@ -26,6 +26,8 @@ gem 'font-awesome-rails'
 
 gem 'kaminari'
 
+gem "kakasi"
+
 gem 'carrierwave'
 
 gem 'rmagick'

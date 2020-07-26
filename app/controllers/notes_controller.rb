@@ -1,14 +1,12 @@
 class NotesController < ApplicationController
-  include ActionView::Helpers::UrlHelper
-
+  before_action :authenticate_user!
 
   def create
-    @user = User.find_by(id: current_user.id)
-    @note = @user.notes.build(note_params)
+    @note = current_user.notes.build(note_params)
     if @note.save
+      flash[:success] = "投稿しました"
       redirect_to request.referrer || root_url
     else
-      @feed = []
       flash[:danger] = "投稿に失敗しました"
       render 'home/index'
     end
@@ -37,7 +35,7 @@ class NotesController < ApplicationController
   private
 
   def note_params
-      params.permit(:content,:group_id)
+      params.permit(:content,:group_id,:image)
     end
 
   def count_params

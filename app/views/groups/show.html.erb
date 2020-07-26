@@ -1,6 +1,10 @@
 <ul class="group_info">
   <li><h3>グループ名:<%= @group.name %></h3></li>
-  <li><img src= "<%= @group.image %>" class="image_icon" alt="" ></li>
+  <% if @group.image.present? %>
+    <li><img src= "<%= @group.image %>" class="image_icon"></li>
+  <% else %>
+    <li><img src= "/assets/default_group_icon.png" class="image_icon"></li>
+  <% end %>
 </ul>
 
 　<p>グループプロフィール</p>
@@ -14,10 +18,23 @@
   <h3>所属メンバー名</h3>
     <% @members.each do |member| %>
       <ul>
-        <li><%= member.name %></li>
+        <li><%= member.user.name %></li>
+        <% if member.user.image.present? %>
+          <li><img src= "<%= member.user.image %>" class="image_icon"></li>
+        <% else %>
+          <li><img src= "/assets/default_user_icon.jpg" class="image_icon"></li>
+        <% end %>
       </ul>
     <% end %>
 
   <div class="forms">
-    <%= render 'searches/searches_form' %>
+    <div class="form_title">招待したいユーザーを検索</div>
+
+    <%= form_with url: index_path, method: :get, local: true do |f| %>
+    <div class="form_body">
+        <%= f.hidden_field :group_id, :value => @group.id %>
+        <%= f.text_field :name,class:'form', placeholder: "ユーザー名を入力" %>
+        <%= f.submit "検索", class: "btn btn-default" %>
+    </div>
+    <% end %>
   </div>

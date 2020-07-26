@@ -2,7 +2,7 @@
 //投稿一覧
 
 .lite {
-  width: 150px;
+  // width: 150px;
 }
 
 .note {
@@ -23,6 +23,10 @@
   display: block !important;
 }
 
+.note_image {
+  height :80px;
+  width :80px;
+}
 
 //削除ボタン
 

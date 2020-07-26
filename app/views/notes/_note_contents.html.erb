@@ -1,15 +1,19 @@
 <%= form_with url: note_path do |f| %>
   <% if @own_notes.present? %>
-    <% @own_notes.each do |note| %>
     <div>
-    <%= note.user.name %>
-    <img src= "<%= note.user.image %>" class="image_icon" alt="" >
+      <%= current_user.name %>
+      <img src= "<%= current_user.image %>" class="image_icon" alt="" >
     </div>
+    <% @own_notes.each do |note| %>
+
     <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id}" %>
 
     <button type="button" class="btn lite">
       <div class="note">
         <%= note.content %>
+        <% if note.image.present? %>
+          <img src="<%= note.image %>" class="note_image" >
+        <% end %>
         <%= note.count %>
           <% if note.count.present? %>
             <span>個</span>
@@ -17,11 +21,11 @@
       </div>
       <div class="comment">
         <% note.comments.each do |c| %>
-          <li class="comment_list">
+          <div class="comment_list">
             <%= link_to c.content ,"/comments/#{c.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
               <span> : </span>
-            <%= note.user.name %>
-          </li>
+            <%= c.user.name %>
+          </div>
         <% end %>
       </div>
     </button>
@@ -89,3 +93,18 @@ $('.js_comment_btn').on('click', function () {
 $('#comment_id').val(this.value);
 })
 </script>
+
+<div class="forms">
+  <%= form_with url: notes_path do |f| %>
+    <div class="form_body">
+      <%= f.text_field :content,class:'form', placeholder: "買うものを入力" %>　　　　　
+      <%= f.label :image, class:'image_form' do %>
+      <label>
+        <i class="fa fa-image "></i>
+        <%= f.file_field :image, class: "form-image" %>
+      </label>
+      <% end %>
+      <%= f.submit "投稿", class: "btn btn-default form-btn " %>
+    </div>
+  <% end %>
+</div>

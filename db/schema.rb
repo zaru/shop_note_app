@@ -13,16 +13,16 @@
 ActiveRecord::Schema.define(version: 20200716020924) do
 
   create_table "comments", force: :cascade do |t|
-    t.text "content"
-    t.integer "user_id"
-    t.integer "note_id"
+    t.text "content", null: false
+    t.integer "user_id", null: false
+    t.integer "note_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "group_members", force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "user_id"
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
     t.boolean "activated", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20200716020924) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string "name"
-    t.integer "admin_user_id"
+    t.string "name", null: false
+    t.integer "admin_user_id", null: false
     t.text "profile"
     t.string "image"
     t.datetime "created_at", null: false
@@ -40,9 +40,10 @@ ActiveRecord::Schema.define(version: 20200716020924) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.text "content", null: false
+    t.text "content"
+    t.string "image"
     t.integer "count"
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,13 +63,13 @@ ActiveRecord::Schema.define(version: 20200716020924) do
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
+    t.string "image"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
