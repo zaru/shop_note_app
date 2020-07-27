@@ -17,10 +17,15 @@
       <%= f.text_area :profile, class:'form-control' %>
     </div>
 
-    <div>
-      <%= f.label :"グループアイコン" %>
-      <%= f.file_field :image %>
+    <div class="field">
+      <%= f.label :"グループアイコン", class:'image_form' do %>
+      <label>
+        <div class="btn btn_deault group_form">グループアイコンを選択</div>
+        <%= f.file_field :image, class: "image_form_title" %>
+      </label>
+      <% end %>
     </div>
+
     <div>
       <%= f.submit "グループ情報変更", class:"btn btn_primary" %>
     </div>

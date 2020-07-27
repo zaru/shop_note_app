@@ -36,9 +36,13 @@
     <%= f.password_field :current_password, autocompletSe: "current-password" %>
   </div>
 
-  <div>
-    <%= f.label :ユーザーアイコン %><br/>
-    <%= f.file_field :image %>
+  <div class="field">
+    <%= f.label :グループアイコン, class:'image_form' do %>
+    <label>
+      <div class="btn btn_deault">ユーザーアイコンを選択</div>
+      <%= f.file_field :image, class: "image_form_title" %>
+    </label>
+    <% end %>
   </div>
 
   <div class="action"><br/>

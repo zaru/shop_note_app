@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :product_registrations, only: [:index,:create,:destroy]  do
+    resources :favorite_items, only: [:index,:create,:destroy]  do
       collection do
         post :bluk_posting
       end

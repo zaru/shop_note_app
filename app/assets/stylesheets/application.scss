@@ -85,8 +85,14 @@
   text-align: center;
 }
 
-.form-image{
+.image_form_title{
    display: none;
+}
+
+.image_form{
+  background-color: #EFEFEF;
+  border-radius: 0.25rem;
+  margin-top: 20px;
 }
 
 .form-btn {

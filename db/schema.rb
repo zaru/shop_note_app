@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200716020924) do
+ActiveRecord::Schema.define(version: 20200726110835) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 20200716020924) do
     t.integer "note_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_items", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_favorite_items_on_group_id"
+    t.index ["user_id"], name: "index_favorite_items_on_user_id"
   end
 
   create_table "group_members", force: :cascade do |t|
@@ -48,16 +58,6 @@ ActiveRecord::Schema.define(version: 20200716020924) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_notes_on_user_id_and_created_at"
-  end
-
-  create_table "product_registrations", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "user_id"
-    t.integer "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_product_registrations_on_group_id"
-    t.index ["user_id"], name: "index_product_registrations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

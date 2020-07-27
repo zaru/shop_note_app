@@ -27,8 +27,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :ユーザーアイコン %><br/>
-    <%= f.file_field :image %>
+    <%= f.label :image, class:'image_form' do %>
+    <label>
+      <div class="btn btn_deault">ユーザーアイコン</div>
+      <%= f.file_field :image, class: "form-image" %>
+    </label>
+    <% end %>
   </div>
 
   <div class="actions">
