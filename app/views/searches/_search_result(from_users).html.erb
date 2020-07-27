@@ -1,0 +1,54 @@
+<p>検索結果一覧</p>
+
+<% if @search_users.present? %>
+  <% @search_users.each do |user| %>
+  <%# <% @groups.each do |group| %>
+
+    <ul>
+      <li>
+        <%= user.name %>
+      </li>
+      <li>
+        <%= form_with url:invite_group_path(user.id) do |f| %>
+
+  　　　　 <%= f.hidden_field :user_id, :value => user.id %>
+
+  　　　　　<p>グループを選択：</p>
+
+          <%= f.collection_select :group_id,current_user.groups.order(id: :desc),:id,:name %>
+
+          <%= f.submit "グループ招待する",class: "btn btn-primary" %>
+
+        <% end %>
+      </li>
+      <% if user.group_members.present? %>
+
+        <% user.group_members.each do |group| %>
+          <li>
+            <%= form_with url:invite_reset_group_path(user.id) do |f| %>
+
+              <%= f.hidden_field :user_id, :value => user.id %>
+
+              <%= f.submit "リクエストを解除",class: "btn btn-default" %>
+
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+      </ul>
+  <%# <% end %>
+  <% end %>
+
+<% else %>
+
+<p>指定されたユーザーは存在しません</p>
+
+<p><%= link_to "ユーザー一覧",signup_path %>を表示</p>
+
+<% end %>
+
+
+
+<div class="forms">
+  <%= render 'searches/searches_form' %>
+</div>
