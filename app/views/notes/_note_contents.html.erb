@@ -1,38 +1,42 @@
 <%= form_with url: note_path do |f| %>
   <% if @own_notes.present? %>
-    <div>
-      <%= current_user.name %>
-      <img src= "<%= current_user.image %>" class="image_icon" alt="" >
-    </div>
+
     <% @own_notes.each do |note| %>
 
     <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id}" %>
 
-    <button type="button" class="btn lite">
-      <div class="note">
-        <%= note.content %>
-        <% if note.image.present? %>
-          <img src="<%= note.image %>" class="note_image" >
-        <% end %>
-        <%= note.count %>
-          <% if note.count.present? %>
-            <span>個</span>
-          <% end %>
-      </div>
-      <div class="comment">
-        <% note.comments.each do |c| %>
-          <div class="comment_list">
-            <%= link_to c.content ,"/comments/#{c.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
-              <span> : </span>
-            <%= c.user.name %>
-          </div>
-        <% end %>
-      </div>
-    </button>
-    <button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" value="<%= note.id %>" id="js_count">数量</button>
-    <button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" value="<%= note.id %>" id="js_comment btn2">メモ</button>
+    <div class="note btn btn-light" >
+      <ul>
+        <li>
+          <div class="note_body">
+            <div class="note_content">
+              <%= note.content %>
+              <% if note.image.present? %>
+                <img src="<%= note.image %>" class="note_image" >
+              <% end %>
+              <%= note.count %>
+                <% if note.count.present? %>
+                  <span>個</span>
+                <% end %>
+            </div>
 
+            <div class="comment">
+              <% note.comments.each do |comment| %>
+                <div class="comment_list">
+                  <%= link_to comment.content ,"/comments/#{comment.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+                    <span> : </span>
+                  <%= comment.user.name %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </li>
+        <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count">数量</button></li>
+        <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment btn2">メモ</button></li>
+      </ul>
+    </div>
     <div class="time"><%= note.created_at.to_s(:datetime) %></div>
+
 
   <% end %>
 
@@ -41,7 +45,7 @@
 <% end %>
 
 <div class = "destroy">
-  <%= f.submit '購入済み', class: 'btn btn btn-primary' %>
+  <%= f.submit '購入済み', class: 'btn btn btn-warning' %>
 </div>
 
 <% end %>
@@ -104,7 +108,7 @@ $('#comment_id').val(this.value);
         <%= f.file_field :image, class: "form-image" %>
       </label>
       <% end %>
-      <%= f.submit "投稿", class: "btn btn-default form-btn " %>
+      <%= f.submit "投稿", class: "btn btn-primary form-btn " %>
     </div>
   <% end %>
 </div>

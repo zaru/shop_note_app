@@ -1,7 +1,7 @@
 
 <p>グループ情報編集</p>
 
-<p>下記項目を入力して送信ボタンを押してください</p>
+<p>下記項目を入力してグループ情報変更ボタンを押してください</p>
 
 <div class = "group_form">
 
@@ -14,21 +14,23 @@
 
     <div>
       <%= f.label :"グループプロフィール" %>
-      <%= f.text_area :profile, class:'form-control' %>
+      <%= f.text_area :profile, class:'form-control' %><br />
     </div>
 
-    <div class="field">
-      <%= f.label :"グループアイコン", class:'image_form' do %>
-      <label>
-        <div class="btn btn_deault group_form">グループアイコンを選択</div>
-        <%= f.file_field :image, class: "image_form_title" %>
-      </label>
-      <% end %>
+    <div class="custom-file">
+      <%= f.file_field :image, class: "custom-file-input" ,id: "customFile" %>
+      <label class="custom-file-label" for="customFile">アイコンにする画像を選んでください</label>
     </div>
 
     <div>
-      <%= f.submit "グループ情報変更", class:"btn btn_primary" %>
+      <br /><%= f.submit "グループ情報変更", class:"btn btn-primary" %>
     </div>
   <% end %>
 
 </div>
+
+<script type="text/javascript">
+$('.custom-file-input').on('change',function(){
+  $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+})
+</script>

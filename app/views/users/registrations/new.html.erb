@@ -1,16 +1,18 @@
 <h2>ユーザー新規登録</h2>
 
+<i>下記項目を入力し、登録完了ボタンを押してください</i><br />
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :ユーザー名 %><br />
-    <%= f.text_field :name,autocomplete: "name",autofocus: true %>
+    <%= f.text_field :name,autocomplete: "name",autofocus: true,class:"form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control" %>
   </div>
 
   <div class="field">
@@ -18,24 +20,27 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> 文字以上で入力してください)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password",class:"form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :パスワード確認用 %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :image, class:'image_form' do %>
-    <label>
-      <div class="btn btn_deault">ユーザーアイコン</div>
-      <%= f.file_field :image, class: "form-image" %>
-    </label>
-    <% end %>
-  </div>
+  <div class="custom-file">
+  <%= f.file_field :image, class: "custom-file-input" ,id: "customFile" %>
+  <label class="custom-file-label" for="customFile">アイコンにする画像を選んでください</label>
+</div>
 
   <div class="actions">
-    <%= f.submit "登録完了" %>
+    <br /><%= f.submit "登録完了",class:"btn btn-primary" %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+$('.custom-file-input').on('change',function(){
+  $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+})
+</script>

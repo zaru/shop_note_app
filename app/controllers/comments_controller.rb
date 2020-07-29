@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     def correct_user
       comment = Comment.find(params[:id])
       unless comment.user_id == current_user.id
-        flash[:danger] = "投稿者本人でないためコメントの削除は出来ませんでした"
+        flash[:danger] = "投稿者本人でないため削除出来ませんでした"
         redirect_to request.referrer || root_url
       end
     end

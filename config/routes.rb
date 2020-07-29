@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post "comment", :to => "comments#create"
     delete "comments/:id",:to => "comments#destroy"
     get "index",:to => "searches#index"
+    post "favorite_items_destroy", :to => "favorite_items#destroy"
 
     resources :groups do
       collection do
@@ -33,9 +34,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :favorite_items, only: [:index,:create,:destroy]  do
+    resources :favorite_items, only: [:index,:create,:new]  do
       collection do
-        post :bluk_posting
+        post :post
       end
     end
 

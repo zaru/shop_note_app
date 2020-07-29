@@ -6,7 +6,7 @@ class Group < ApplicationRecord
   accepts_nested_attributes_for :group_members
 
   validates :name, presence: true
-  validates :admin_user_id, presence: true, uniqueness: true
+  validates :admin_user_id, presence: true
   validates :profile, length: { maximum: 100 }
 
   mount_uploader :image, ImageUploader

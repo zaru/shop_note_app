@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def create
+    binding.pry
     @group = Group.new(group_params)
     @group.admin_user_id = current_user.id
     if @group.save
@@ -106,7 +107,7 @@ class GroupsController < ApplicationController
     # end
 
     def group_params
-      params.permit(:name,:profile,:image)
+      params.permit(:image,:name,:profile)
     end
 
     def join_params

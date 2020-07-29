@@ -20,34 +20,39 @@
           <img src="/assets/default_user_icon.jpg" class="image_icon" >
         <% end %>
       </div>
+　　　　
+      <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id}" %>
 
-        <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id}" %>
+      <div class="note btn btn-light">
+        <ul>
+          <li>
+            <div class="note_body">
+              <div class="note_content">
+                <%= note.content %>
+                <% if note.image.present? %>
+                  <img src="<%= note.image %>" class="note_image" >
+                <% end %>
+                <%= note.count %>
+                  <% if note.count.present? %>
+                    <span>個</span>
+                  <% end %>
+              </div>
 
-        <button type="button" class="btn btn_deault">
-          <div class="note_content">
-            <%= note.content %>
-            <% if note.image.present? %>
-              <img src="<%= note.image %>" class="note_image" >
-            <% end %>
-            <%= note.count %>
-              <% if note.count.present? %>
-                <span>個</span>
-              <% end %>
-          </div>
-
-        <div class="comment">
-          <% note.comments.each do |comment| %>
-            <div class="comment_list">
-              <%= link_to comment.content ,"/comments/#{comment.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
-                <span> : </span>
-              <%= comment.user.name %>
+              <div class="comment">
+                <% note.comments.each do |comment| %>
+                  <div class="comment_list">
+                    <%= link_to comment.content ,"/comments/#{comment.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+                      <span> : </span>
+                    <%= comment.user.name %>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          <% end %>
-        </div>
-        </button>
-
-      <button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count">数量</button>
-      <button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment btn2">メモ</button>
+          </li>
+          <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count">数量</button></li>
+          <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment btn2">メモ</button></li>
+        </ul>
+      </div>
       <div class="time"><%= note.created_at.to_s(:datetime) %></div>
 
     <% end %>
@@ -57,7 +62,7 @@
   <% end %>
 
   <div class = "destroy">
-    <%= f.submit '購入済み', class: 'btn btn btn-primary' %>
+    <%= f.submit '購入済み', class: 'btn btn btn-warning' %>
   </div>
 
 <% end %>
@@ -121,7 +126,10 @@
         <%= f.file_field :image, class: "form-image" %>
       </label>
       <% end %>
-      <%= f.submit "投稿", class: "btn btn-default form-btn " %>
+      <%= link_to favorite_items_path, class:"btn btn-dark" ,group_id: @group.id do %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+      <%= f.submit "投稿", class: "btn btn-primary form-btn " %>
     </div>
   <% end %>
 </div>

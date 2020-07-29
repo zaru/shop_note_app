@@ -1,9 +1,9 @@
 
-<p>お気に入り商品一覧</p>
+<p>お気に入り商品編集</p>
 
 <% if @favorite_items.present? %>
 
-  <%= form_with url: post_favorite_items_path do |f| %>
+  <%= form_with url: favorite_items_destroy_path do |f| %>
     <div class="item_list">
     　<p>-あ行-</p>
         <% @A_line.each do |item| %>
@@ -84,13 +84,18 @@
         <% end %>
     </div>
 
-  <%= f.hidden_field :group_id, :value => @group.id %>
+  　<div class="bluk_posting_button">
+  　  <%= f.submit "商品をまとめて削除",class:"btn btn-warning" %>
+  　</div>
+  <% end %>
 
   <div class= "forms">
-    <div class="form_title">投稿したい商品を選択し、投稿ボタンを押してください</div>
+    <div class="form_title">一覧に追加したい商品を入力してください</div>
 
+    <%= form_with model: @favorite_item do |f| %>
       <div class = "form_body">
-      <%= f.submit "投稿",class:"btn btn-primary" %>
+      <%= f.text_field :name, class: "form-control", placeholder:'商品名を入力(複数ある場合は間に空白を入れて入力してください)' %>
+      <%= f.submit "登録",class:"btn btn-primary" %>
       </div>
       <% end %>
   </div>
