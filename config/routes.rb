@@ -7,22 +7,32 @@ Rails.application.routes.draw do
 
 
   devise_scope :user do
+    get 'users/index', to: 'users/registrations#index'
     root 'home#index'
     get "/help", :to => "home#help"
-    get "user/:id", :to => "users/registrations#detail"
+    # get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
-    post "note", :to => "notes#destroy"
     post "notes", :to => "notes#create"
+    post "note", :to => "notes#destroy"
     post "count", :to => "notes#count"
     post "comment", :to => "comments#create"
     delete "comments/:id",:to => "comments#destroy"
-    post "groups/:id/",:to => "groups#update"
-    get "find",:to => "seaches#find"
+    get "index",:to => "searches#index"
 
-    resources :groups
-    resources :seaches
+    resources :groups do
+      collection do
+        get :request_list
+      end
+      member do
+        get :chatroom
+        post :invite
+        post :invite_reset
+        post :join
+
+      end
+    end
 
   end
 end

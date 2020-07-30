@@ -1,21 +1,23 @@
-<p><%= "ルーム名：#{@room.name}" %></p>
+  <ul class="group_info">
+  <li><h3>グループ名:<%= @group.name %></h3></li>
+  <li><img src= <%= @group.image %> class= "image_icon" alt="/assets/default_group_icon.png"></li>
+</ul>
 
-<p>グループメンバー</p>
+　<p>グループプロフィール</p>
+    <div class="group_profile">
+      <%= @group.profile %>
 
-<% @members.each do |member| %>
-  <ul>
-    <li><%= member.name %></li>
-  </ul>
-<% end %>
+    </div>
 
-<div class="group_notes">
+    <%= link_to "グループ情報編集",edit_group_path(@group.id) %>
 
-<p>投稿一覧</p>
+  <h3>所属メンバー名</h3>
+    <% @members.each do |member| %>
+      <ul>
+        <li><%= member.name %></li>
+      </ul>
+    <% end %>
 
-  <% @notes.each do |note| %>
-
-  <%= note.content %>
-
-<% end %>
-
-</div>
+  <div class="forms">
+    <%= render 'searches/searches_form' %>
+  </div>

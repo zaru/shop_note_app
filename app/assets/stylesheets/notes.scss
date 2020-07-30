@@ -1,20 +1,19 @@
-// Place all the styles related to the Notes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 
 // 全体
 
-.note_feed {
-  position: relative;
-  top: 10px;
+.feed {
+  // position: relative;
+  // top: 10px;
   padding-bottom: 200px;
   overflow: scroll;
   text-align: center;
 }
 
+//投稿一覧
 
-//フィード
+.lite {
+  width: 150px;
+}
 
 .note {
   font-size: 20px;
@@ -30,18 +29,10 @@
   text-align: left;
 }
 
-.btn-lite {
-  width: 200px;
-  height: 100px;
-}
-
 .drop-hover:hover > .dropdown-menu {
   display: block !important;
 }
 
-.drop-hover:hover > .dropdown-menu {
-  display: block !important;
-}
 
 //削除ボタン
 

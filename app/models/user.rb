@@ -8,5 +8,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :group_members
   has_many :groups, through: :group_members
+  mount_uploader :image, ImageUploader
 
 end

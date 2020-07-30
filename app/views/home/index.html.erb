@@ -1,12 +1,11 @@
 <%if user_signed_in? %>
 
-  <div class="page_title">買い物リスト</div>
-
-  <div class= "note_feed">
-   <%= render 'notes/notes_feed' %>
+  <div class= "feed">
+   <%= render 'notes/note_contents' %>
   </div>
+
   <div class= "forms">
-   <%= render 'notes/notes_form' %>
+   <%= render 'notes/note_form' %>
   </div>
 
 <% else %>

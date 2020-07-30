@@ -1,10 +1,12 @@
 class NotesController < ApplicationController
+  include ActionView::Helpers::UrlHelper
+
 
   def create
     @user = User.find_by(id: current_user.id)
     @note = @user.notes.build(note_params)
     if @note.save
-      redirect_to root_url
+      redirect_to request.referrer || root_url
     else
       @feed = []
       flash[:danger] = "投稿に失敗しました"
@@ -13,11 +15,11 @@ class NotesController < ApplicationController
   end
 
   def count
-    @count = Note.find(params[:count_id])
+    @count = Note.find(params[:note_id])
     @count.count = params[:count]
     if @count.save
       flash[:success] = "投稿しました"
-      redirect_to root_url
+      redirect_to request.referrer || root_url
     else
       flash[:danger] = "投稿に失敗しました"
       render 'home/index'
@@ -26,7 +28,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    params[:feed][:id].each do |note_id|
+    params[:note][:id].each do |note_id|
       Note.find_by(id: note_id).delete
     end
     redirect_to request.referrer || root_url
@@ -35,7 +37,7 @@ class NotesController < ApplicationController
   private
 
   def note_params
-      params.permit(:content)
+      params.permit(:content,:group_id)
     end
 
   def count_params

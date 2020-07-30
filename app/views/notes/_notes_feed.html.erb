@@ -1,7 +1,6 @@
-
 <%= form_with url: note_path do |f| %>
-  <% if @feed.present? %>
-    <% @feed.each do |feed| %>
+  <% if @own_feed.present? %>
+    <% @own_feed.each do |feed| %>
       <div class="note_user">
         <%= feed.user.name %>
       </div>
@@ -11,7 +10,7 @@
           <%= feed.content %>
           <%= feed.count %>
           <% if feed.count.present? %>
-          <span>個</span>
+            <span>個</span>
           <% end %>
         </div>
         <div class="comment">
@@ -24,14 +23,14 @@
           <% end %>
         </div>
       </button>
-      <button type="button" class="btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" value="<%= feed.id %>" id="js_count">数量</button>
-      <button type="button" class="btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" value="<%= feed.id %>" id="js_comment">コメント入力</button>
+      <button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" data-whatever="count" value="<%= feed.id %>" id="js_count">数量</button>
+      <button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" data-whatever="comment" value="<%= feed.id %>" id="js_comment btn2">メモ</button>
       <div class="time"><%= feed.created_at.to_s(:datetime) %></div>
     <% end %>
   <% else %>
     <p>現在買うものはありません</p>
   <% end %>
-  <div class="destroy">
+  <div class = "destroy">
     <%= f.submit '購入済み', class: 'btn btn btn-primary' %>
   </div>
 <% end %>
@@ -42,7 +41,7 @@
       <%= form_with url: count_path do |f| %>
         <h4 class="modal-title" id="comment_ModalLabel">数量入力欄</h4>
         <div class="modal-body">
-          <%= hidden_field_tag :count_id, "", {id: "count_id"} %>
+          <%= hidden_field_tag :note_id, "", {id: "count_id"} %>
           <%= f.select :count, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]],
                        { include_blank: true, selected: 1 }, { id: "user_id", class: "user_class" } %>
         </div>
@@ -61,7 +60,7 @@
       <%= form_with url: comment_path do |f| %>
         <h4 class="modal-title" id="comment_ModalLabel">コメント入力欄</h4>
         <div class="modal-body">
-          <%= hidden_field_tag :comment_id, "", {id: "comment_id"} %>
+          <%= hidden_field_tag :note_id, "", {id: "comment_id"} %>
           <%= f.text_area :content, size: "10x5", class: "form-control" %>
         </div>
         <div class="modal-footer">
@@ -72,14 +71,12 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
 
-  $('#count_Modal').on('click', function () {
-    var value = $('#js_count').val();
-    $('#count_id').val(value);
-  })
-  $('#comment_Modal').on('click', function () {
-    var value = $('#js_comment').val();
-    $('#comment_id').val(value);
+<script type="text/javascript">
+  $('.js_count_btn').click(function() {
+    $('#count_id').val(this.value);
+  });
+  $('.js_comment_btn').on('click', function () {
+    $('#comment_id').val(this.value);
   })
 </script>

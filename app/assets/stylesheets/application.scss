@@ -14,8 +14,10 @@
  *= require_self
  */
 
- // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+ @import "font-awesome";
+ @import "custom";
+
 
 // アプリ全体
 
@@ -28,11 +30,38 @@
    margin: 0;
    padding: 0;
    // background: linear-gradient(#1e3c72, #2a5298);
-   top:75px;
+   top: 50px;
  }
+
+.container-fluid {
+  text-align: center;
+}
+
+#left {
+  background-color: black;
+}
+
+#right {
+  background-color: black;
+}
 
  ul {
    list-style: none;
+ }
+
+ li {
+   display: inline-block;
+ }
+
+#filename {
+  display: none;
+}
+
+ .image_icon {
+   width: 25px;
+   height: 25px;
+   border-radius: 100%;
+   object-fit: cover;
  }
 
 // ヘッダー、フッター
@@ -45,8 +74,9 @@
    height: 75px;
  }
 
-#invite {
-  
+.i {
+   position: relative;
+   bottom:20px;
 }
 
 
@@ -60,7 +90,7 @@
     background-color: #333333;
   }
 
- .form_group {
+ .form_body {
    text-align: center;
    padding-top: 25px;
 

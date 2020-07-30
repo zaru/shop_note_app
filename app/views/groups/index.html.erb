@@ -1,0 +1,7 @@
+<p>所属グループ一覧</p>
+
+<% @user.groups.each do |group| %>
+  <ul>
+    <li><%= link_to group.name,group_path(group.id) %></li>
+  </ul>
+<% end %>

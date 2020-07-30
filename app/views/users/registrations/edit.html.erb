@@ -36,6 +36,11 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div>
+    <%= f.label :ユーザーアイコン %><br/>
+    <%= f.file_field :image %>
+  </div>
+
   <div class="actions">
     <%= f.submit "ユーザー情報変更" %>
   </div>
