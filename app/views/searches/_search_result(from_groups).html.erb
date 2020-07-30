@@ -1,0 +1,35 @@
+<% @search_users.each do |user| %>
+  <ul>
+    <li>
+      <%= user.name %>
+    </li>
+
+    <% unless user.group_members.find_by(group_id: @group.id).present? %>
+      <li>
+        <%= form_with url:invite_group_path(user.id) do |f| %>
+
+        <%= f.hidden_field :group_id, :value => @group.id %>
+
+        <%= f.submit "グループ招待する",class: "btn btn-primary" %>
+
+        <% end %>
+      </li>
+
+    <% else %>
+
+      <% unless user.group_members.find_by(group_id: @group.id).activated.present? %>
+        <li>
+          <%= form_with url:invite_reset_group_path(user.id) do |f| %>
+
+          <%= f.hidden_field :user_id, :value => user.id %>
+
+          <%= f.hidden_field :group_id, :value => @group.id %>
+
+          <%= f.submit "リクエストを解除",class: "btn btn-default" %>
+
+          <% end %>
+        </li>
+    　<% end %>
+    <% end %>
+  </ul>
+<% end %>

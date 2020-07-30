@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'users/index', to: 'users/registrations#index'
     root 'home#index'
     get "/help", :to => "home#help"
-    # get "user/:id", :to => "users/registrations#detail"
+    get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post "comment", :to => "comments#create"
     delete "comments/:id",:to => "comments#destroy"
     get "index",:to => "searches#index"
+    post "favorite_items_destroy", :to => "favorite_items#destroy"
 
     resources :groups do
       collection do
@@ -30,7 +31,12 @@ Rails.application.routes.draw do
         post :invite
         post :invite_reset
         post :join
+      end
+    end
 
+    resources :favorite_items, only: [:index,:create,:new]  do
+      collection do
+        post :post
       end
     end
 

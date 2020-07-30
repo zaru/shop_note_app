@@ -15,7 +15,7 @@
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー情報</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class= "dropdown-item"<%= link_to "ユーザー情報編集",edit_user_registration_path(current_user) %></a>
-          <a class= "dropdown-item"<%= link_to "お気に入り商品登録","#" %></a>
+          <a class= "dropdown-item"<%= link_to "お気に入り商品",new_favorite_item_path %></a>
           <div class="dropdown-divider"></div>
           <a class= "dropdown-item"<%= link_to "ユーザー一覧",users_index_path %></a>
           <div class="dropdown-divider"></div>
@@ -31,35 +31,26 @@
 
         <a class="dropdown-item" <%= link_to  request_list_groups_path, method: :get do %>
           グループリクエスト一覧
-
           <% if @request.present? %>
             <i class="fa fa-exclamation-circle"></i>　<%= @request.count %>件</a>
           <% end %>
-
-
   <% end %>
 
-
-          <% if @groups.present? %>
-            <div class="dropdown-divider"></div>
-            <nav>トークルーム</nav>
-              <% @groups.each do |group| %>
-                <ul>
-                  <li class="nav_link"><%= link_to group.name,chatroom_group_path(group.id) %>
-                  <%# <!-- <li class="nav_link"><%= link_to group.name,"/groups/chatroom/#{group.id}" %>
-                    <span class="delete_link"><%= link_to "削除", group_path(group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></span>
-                  </li>
-                </ul>
-              <% end %>
-
-　　　　　　<% end %>
+            <% if @group_lists.present? %>
+              <div class="dropdown-divider"></div>
+              <p>トークルーム</p>
+                <% @group_lists.each do |group| %>
+                  <ul>
+                    <li class="nav_link"><%= link_to group.group.name,chatroom_group_path(group.group.id) %>
+                      <% if current_user.id == group.group.admin_user_id %>
+                        <span class="delete_link"><%= link_to "削除", group_path(group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></span>
+                      <% end %>
+                    </li>
+                  </ul>
+                <% end %>
+            <% end %>
         </div>
-        <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー招待</a>
-          <div class="dropdown-menu" id="invite" aria-labelledby="navbarDropdown">
-            <%# <a class="dropdown-item" <%= link_to "招待メール","#" %></a> %>
-          </div>
-        </li> -->
+
       <li class="nav-item"><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>
 
   <% else %>

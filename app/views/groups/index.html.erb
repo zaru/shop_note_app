@@ -1,7 +1,22 @@
+
+<% if @groups.present? %>
+
 <p>所属グループ一覧</p>
 
-<% @user.groups.each do |group| %>
-  <ul>
-    <li><%= link_to group.name,group_path(group.id) %></li>
-  </ul>
+  <% @groups.each do |group| %>
+  　<ul>
+      <li><%= link_to group.name,group_path(group.id) %></li>
+      <% if group.image.present? %>
+        <li><img src= "<%= group.image %>" class="image_icon"></li>
+      <% else %>
+        <li><img src= "/assets/default_group_icon.png" class="image_icon"></li>
+      <% end %>
+      <li>プロフィール : <%= group.profile %></li>
+    </ul>
+  <% end %>
+
+<% else %>
+
+  <p>現在所属しているグループはありません</p>
+
 <% end %>

@@ -1,21 +1,11 @@
 
-// 全体
-
-.feed {
-  // position: relative;
-  // top: 10px;
-  padding-bottom: 200px;
-  overflow: scroll;
-  text-align: center;
-}
-
 //投稿一覧
 
-.lite {
-  width: 150px;
+.note_body {
+  width: 200px;
 }
 
-.note {
+.note_content {
   font-size: 20px;
   border-bottom: solid 1px black;
 }
@@ -33,6 +23,10 @@
   display: block !important;
 }
 
+.note_image {
+  height :80px;
+  width :80px;
+}
 
 //削除ボタン
 

@@ -1,0 +1,37 @@
+<p>検索結果一覧</p>
+
+<% if @search_users.present? %>
+  <% @search_users.each do |user| %>
+    <% if user.id != current_user.id %>
+
+      <% if @group.blank? %>
+
+        <%= render 'search_result(from_users)' %>
+
+      <% else %>
+
+        <%= render 'search_result(from_groups)' %>
+
+      <% end %>
+    <% else %>
+    　<p>指定されたユーザーは存在しません</p>
+    <% end %>
+  <% end %>
+<% else %>
+
+<p>指定されたユーザーは存在しません</p>
+
+<p><%= link_to "ユーザー一覧",signup_path %>を表示</p>
+
+<% end %>
+
+<div class="forms">
+  <div class="form_title">招待したいユーザーを検索</div>
+
+  <%= form_with url: index_path, method: :get, local: true do |f| %>
+    <div class="form_body">
+      <%= f.text_field :name,class:'form', placeholder: "ユーザー名を入力" %>
+      <%= f.submit "検索", class: "btn btn-default" %>
+    </div>
+  <% end %>
+</div>

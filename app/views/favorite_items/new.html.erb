@@ -1,0 +1,116 @@
+
+<p>お気に入り商品編集</p>
+
+<% if @favorite_items.present? %>
+
+  <%= form_with url: favorite_items_destroy_path do |f| %>
+    <div class="item_list">
+    　<p>-あ行-</p>
+        <% @A_line.each do |item| %>
+          <label>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+          </label>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-か行-</p>
+        <% @K_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-さ行-</p>
+        <% @S_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-た行-</p>
+        <% @T_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-な行-</p>
+        <% @N_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-は行-</p>
+        <% @H_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-ま行-</p>
+        <% @M_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-や行-</p>
+        <% @Y_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-ら行-</p>
+        <% @R_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-わ行-</p>
+        <% @W_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+    <div class="item_list">
+    　<p>-その他-</p>
+        <% @other_line.each do |item| %>
+          <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
+          <%= item.name %>
+        <% end %>
+    </div>
+
+  　<div class="bluk_posting_button">
+  　  <%= f.submit "商品をまとめて削除",class:"btn btn-warning" %>
+  　</div>
+  <% end %>
+
+  <div class= "forms">
+    <div class="form_title">一覧に追加したい商品を入力してください</div>
+
+    <%= form_with model: @favorite_item do |f| %>
+      <div class = "form_body">
+      <%= f.text_field :name, class: "form-control", placeholder:'商品名を入力(複数ある場合は間に空白を入れて入力してください)' %>
+      <%= f.submit "登録",class:"btn btn-primary" %>
+      </div>
+      <% end %>
+  </div>
+
+<% else %>
+
+  <p>現在お気に入り商品はありません</p>
+
+  <div class= "forms">
+    <div class="form_title">一覧に追加したい商品を入力してください</div>
+
+    <%= form_with model: @favorite_item do |f| %>
+      <%= f.text_field :name, class: "form-control", placeholder:'商品名を入力(複数ある場合は間に空白を入れて入力してください)' %>
+      <%= f.submit "登録",class:"btn btn-primary" %>
+
+      <% end %>
+  </div>
+<% end %>
