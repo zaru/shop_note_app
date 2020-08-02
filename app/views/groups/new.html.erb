@@ -7,13 +7,13 @@
   <%= form_with url: groups_path do |f| %>
 
     <div>
-      <%= f.label :"名前" %>
-      <%= f.text_field :name, class:'form-control' %>
+      <%= f.label :"名前" %><i>((必須)</i>
+      <%= f.text_field :name, class:'form-control',placeholder: "例:○○家のおつかいリスト" %>
     </div>
 
     <div>
       <%= f.label :"グループプロフィール" %>
-      <%= f.text_area :profile, class:'form-control' %><br />
+      <%= f.text_area :profile, class:'form-control',placeholder: "例:美味しく安く生活！おやつは300円まで！笑" %><br />
     </div>
 
     <div>

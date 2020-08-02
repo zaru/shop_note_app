@@ -25,13 +25,11 @@
 
 <% end %>
 
-<div class="forms">
+<div class="form_body">
   <div class="form_title">招待したいユーザーを検索</div>
 
   <%= form_with url: index_path, method: :get, local: true do |f| %>
-    <div class="form_body">
-      <%= f.text_field :name,class:'form', placeholder: "ユーザー名を入力" %>
-      <%= f.submit "検索", class: "btn btn-default" %>
-    </div>
+    <%= f.text_field :name,class:'form-control search_form', placeholder: "ユーザー名を入力" %>
+    <%= f.submit "検索", class: "btn btn-default" %>
   <% end %>
 </div>
