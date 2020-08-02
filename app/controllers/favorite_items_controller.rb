@@ -1,6 +1,6 @@
 class FavoriteItemsController < ApplicationController
     before_action :authenticate_user!
-    # before_action :correct_user, only: [:destroy]
+    before_action :correct_user, only: [:destroy]
 
     def index
       @favorite_items = current_user.favorite_items.all
@@ -90,10 +90,17 @@ class FavoriteItemsController < ApplicationController
     end
 
     def create
-      params[:favorite_item][:name].split(/[[:blank:]]+/).each do |item|
-      current_user.favorite_items.create(name: item)
-    end
+      if params[:favorite_item][:name].present?
+        params[:favorite_item][:name].split(/[[:blank:]]+/).each do |item|
+          unless FavoriteItem.find_by(name: item).present?
+            current_user.favorite_items.create(name: item)
+          end
+        end
         redirect_to request.referrer || favorite_items_path
+      else
+        flash[:danger] = "投稿に失敗しました"
+        redirect_to request.referrer || root_url
+      end
     end
 
     def destroy
@@ -104,24 +111,27 @@ class FavoriteItemsController < ApplicationController
       redirect_to new_favorite_item_path
     end
 
-
-
     def post
       params[:item][:id].each do |item_id|
         item = current_user.favorite_items.find_by(id: item_id)
         note = Note.create(content: item.name, user_id: item.user_id, group_id: params[:group_id])
       end
-        flash[:success] = "投稿しました"
-        redirect_to root_path
+        if params[:group_id].present?
+          flash[:success] = "投稿しました"
+          redirect_to chatroom_group_path(params[:group_id])
+        else
+          flash[:success] = "投稿しました"
+          redirect_to root_path
+        end
     end
 
     private
 
-    def correct_user
-      comment = Comment.find(params[:id])
-      unless comment.user_id == current_user.id
-        flash[:danger] = "投稿者本人でないため削除出来ませんでした"
-        redirect_to request.referrer || root_url
+      def correct_user
+        item = FavoriteItem.find(params[:item][:id]).first
+        unless item.user_id == current_user.id
+          flash[:danger] = "投稿者本人でないため削除出来ませんでした"
+          redirect_to request.referrer || root_url
+        end
       end
-    end
 end

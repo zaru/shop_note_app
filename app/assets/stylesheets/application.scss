@@ -17,99 +17,165 @@
  @import "bootstrap";
  @import "font-awesome";
  @import "custom";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap');
 
+ // アプリ全体
 
-// アプリ全体
-
- * {
-   position: relative;
- }
-
- body {
-   position: relative;
-   margin: 0;
-   padding: 0;
-   // background: linear-gradient(#1e3c72, #2a5298);
-   top: 50px;
-   text-align: center;
-   overflow: scroll;
-   padding-bottom: 200px;
-
- }
-
-#left {
-  background-color: black;
+* {
+  position: relative;
 }
 
-#right {
-  background-color: black;
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #222222;
+  top: 100px;
+  text-align: center;
+  overflow: scroll;
+  padding-bottom: 200px;
+
 }
 
- ul {
-   list-style: none;
-   margin: 0;
-   padding: 0;
- }
+.side {
+ background-color: black;
+}
 
- li {
-   display: inline-block;
- }
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
- .image_icon {
-   width: 25px;
-   height: 25px;
-   border-radius: 100%;
-   object-fit: cover;
+li {
+  display: inline-block;
+}
+
+a {
+   color: rgba(255, 255, 255, 0.5);
+}
+
+.image_icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  object-fit: cover;
 }
 
 // ヘッダー、フッター
 
 .page_title {
-  text-align: center;
+ text-align: center;
 }
 
- .navbar {
-   height: 75px;
- }
+.navbar {
+  height: 75px;
+}
+
+.app_icon {
+  position: relative;
+  bottom: 12px;
+  width: 40px;
+  border-radius: 10%;
+}
+
+.logo1 {
+  color: white;
+  font-size: 40px;
+}
+
+.logo2 {
+  color: orange;
+}
+
+.dropdown-item {
+  color: rgba(255, 255, 255, 0.5);
+  &:hover {
+  background-color: #222222;
+  color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.dropdown-divider {
+  border-top: 1px solid black;
+}
+
+.item {
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  left: 25px;
+}
 
 // 投稿フォーム
 
-.forms {
-  position: fixed;
-  bottom: 75px;
-  width: 100%;
-  height: 100px;
-  background-color: #333333;
+.form_body {
+ position: fixed;
+ bottom: 75px;
+ width: 100%;
+ height: 120px;
+ background-color: #333333;
 }
 
 .form_title {
-  color: white;
-  text-align: center;
+ color: white;
 }
 
-.form-image {
-   display: none;
+.file_field {
+  display: none;
 }
 
-.image_form{
-  border-radius: 0.25rem;
-  margin-top: 20px;
-}
-
-.form-btn {
+.note_form {
   position: relative;
-  right: 20px;
+  right: 15px;
+  bottom: 15px;
 }
 
-.btn-dark {
-  position: relative;
-  right: 30px
+.search_form {
+  display: inline-block;
+  width: 200px;
 }
 
 .fa-image {
-  color: white;
-  position: relative;
-  right: 50px;
   top: 5px;
-  font-size: 2em;
+  font-size: 30px;
+}
+
+.note_btn {
+  background-color: #444444;
+}
+
+.form-control {
+  background-color: #222222;
+  color: #fff;
+  &:hover {
+    background-color:#444444;
+    color: #fff;
+  }
+  &:focus {
+    background-color:#444444;
+    color: #fff;
+  }
+}
+
+.custom-file-label {
+  background-color: #222222;
+  color: rgba(255, 255, 255, 0.5);
+  &:hover {
+    background-color:#444444;
+    color: #fff;
+  }
+}
+
+//削除ボタン
+
+.destroy {
+  display: none;
+}
+
+input[type=checkbox]:checked ~ .destroy {
+  display: block;
+}
+input[type=checkbox]:checked ~ .btn {
+  background-color: #ffc107;
 }

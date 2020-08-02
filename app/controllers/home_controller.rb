@@ -4,8 +4,7 @@ class HomeController < ApplicationController
     if current_user.present?
       @own_notes = current_user.notes
     else
-      flash[:danger] ="ログインしてください"
-      redirect_to login_path
+      @own_notes = []
     end
   end
 

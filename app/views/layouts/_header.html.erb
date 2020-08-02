@@ -1,11 +1,14 @@
 <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="/"><img src="#" alt="買い物メモアプリ"></a>
+  <ul>
+  <li><a><img src="/assets/default_group_icon.png" class="app_icon"></a></li>
+  <li><p class="logo1">SHOP<span class="logo2">.</span>NOTE</p></li>
+  </ul>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="bs-navi">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav bg-dark ">
 
   <% if user_signed_in? %>
 
@@ -13,7 +16,7 @@
       <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー情報</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class= "dropdown-item"<%= link_to "ユーザー情報編集",edit_user_registration_path(current_user) %></a>
           <a class= "dropdown-item"<%= link_to "お気に入り商品",new_favorite_item_path %></a>
           <div class="dropdown-divider"></div>
@@ -24,7 +27,7 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">グループ情報</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" <%= link_to "グループ作成",new_group_path %></a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" <%= link_to "所属グループ一覧",groups_path %></a>
@@ -38,10 +41,10 @@
 
             <% if @group_lists.present? %>
               <div class="dropdown-divider"></div>
-              <p>トークルーム</p>
+              <div class="item">トークルーム</div>
                 <% @group_lists.each do |group| %>
                   <ul>
-                    <li class="nav_link"><%= link_to group.group.name,chatroom_group_path(group.group.id) %>
+                    <li class="nav-link"><a class="group_name"><%= link_to group.group.name,chatroom_group_path(group.group.id) %></a>
                       <% if current_user.id == group.group.admin_user_id %>
                         <span class="delete_link"><%= link_to "削除", group_path(group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></span>
                       <% end %>
@@ -51,7 +54,7 @@
             <% end %>
         </div>
 
-      <li class="nav-item"><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>
+      <li><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>
 
   <% else %>
 
