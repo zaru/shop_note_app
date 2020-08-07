@@ -1,5 +1,4 @@
 require "nkf"
-require 'kakasi'
 
 class FavoriteItem < ApplicationRecord
   belongs_to :user

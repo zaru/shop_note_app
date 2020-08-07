@@ -17,8 +17,7 @@ class FavoriteItemsController < ApplicationController
       @other_line = []
 
         @favorite_items.each do |item|
-          i = Kakasi.kakasi('-JH -KH',item.name)
-          i_initial = NKF.nkf("-h1 -w",i[0]).tr("A-Z0-9","Ａ-Ｚ０-９")
+          i_initial = NKF.nkf("-h1 -w",item.name[0]).tr("A-Z0-9","Ａ-Ｚ０-９")
             if ["あ","い","う","え","お","a","i","u","e","o","A","I","U","E","O"].include?(i_initial)
               @A_line << item
             elsif ["か","き","く","け","こ","が","ぎ","ぐ","げ","ご","c","k","q","C","K","Q"].include?(i_initial)
@@ -61,8 +60,7 @@ class FavoriteItemsController < ApplicationController
       @other_line = []
 
         @favorite_items.each do |item|
-          i = Kakasi.kakasi('-JH -KH',item.name)
-          i_initial = NKF.nkf("-h1 -w",i[0]).tr("A-Z0-9","Ａ-Ｚ０-９")
+          i_initial = NKF.nkf("-h1 -w",item.name[0]).tr("A-Z0-9","Ａ-Ｚ０-９")
             if ["あ","い","う","え","お","a","i","u","e","o","A","I","U","E","O"].include?(i_initial)
               @A_line << item
             elsif ["か","き","く","け","こ","が","ぎ","ぐ","げ","ご","c","k","q","C","K","Q"].include?(i_initial)
