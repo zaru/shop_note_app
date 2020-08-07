@@ -71,6 +71,9 @@
           <%= item.name %>
         <% end %>
 
+        <li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
+
+
 
   　<div class="destroy">
   　  <%= f.submit "商品をまとめて削除",class:"btn btn-warning" %>
@@ -90,6 +93,8 @@
 <% else %>
 
   <p>現在お気に入り商品はありません</p>
+
+　<li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
 
   <div class= "form_body">
       <div class="f_item_form">

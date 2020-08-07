@@ -6,10 +6,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @comment.note_id = params[:note_id]
     if @comment.save
-      flash[:success] = "投稿しました"
       redirect_to request.referrer || root_url
     else
-      redirect_to request.referrer || root_url
+      flash[:danger] ="投稿に失敗しました"
+      redirect_to :back
     end
   end
 

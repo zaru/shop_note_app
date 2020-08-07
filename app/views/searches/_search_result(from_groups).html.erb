@@ -1,11 +1,15 @@
 <% @search_users.each do |user| %>
-  <ul>
-    <li>
+
+  <% if user.id != current_user.id %>
+
+  <ul class="s_users_list">
+    <li class="s_user_info">
       <%= user.name %>
     </li>
+    <li class="s_user_info">id : <%= user.id %></li>
 
     <% unless user.group_members.find_by(group_id: @group.id).present? %>
-      <li>
+      <li class="s_user_info">
         <%= form_with url:invite_group_path(user.id) do |f| %>
 
         <%= f.hidden_field :group_id, :value => @group.id %>
@@ -32,4 +36,5 @@
     　<% end %>
     <% end %>
   </ul>
+  <% end %>
 <% end %>

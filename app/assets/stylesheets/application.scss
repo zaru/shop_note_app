@@ -38,10 +38,6 @@ body {
 
 }
 
-.side {
- background-color: black;
-}
-
 ul {
   list-style: none;
   margin: 0;
@@ -56,22 +52,11 @@ a {
    color: rgba(255, 255, 255, 0.5);
 }
 
-.image_icon {
-  width: 25px;
-  height: 25px;
-  border-radius: 10%;
-  object-fit: cover;
+a:hover {
+  color: #444444;
 }
 
-// ヘッダー、フッター
-
-.page_title {
- text-align: center;
-}
-
-.navbar {
-  height: 75px;
-}
+//画像、アイコン表示
 
 .app_icon {
   position: relative;
@@ -89,6 +74,63 @@ a {
   color: orange;
 }
 
+.image_icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 10%;
+  object-fit: cover;
+}
+
+.user_icon {
+  width: 15px;
+  height: 15px;
+  border-radius: 10%;
+  object-fit: cover;
+}
+
+.fa {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    &:hover {
+      background-color:#222222;
+      color: white;
+    }
+}
+
+.fa-sort {
+  position: relative;
+  right: 2px;
+  color: black;
+  &:hover {
+    background-color: transparent;
+    color: #888888;
+  }
+}
+
+.fa-pencil {
+  position: relative;
+  right: 5px;
+  color: black;
+  &:hover {
+    background-color: transparent;
+    color: #888888;
+  }
+}
+
+.fa-exclamation-circle {
+  color: #ffc107;
+}
+
+// ヘッダー、フッター
+
+.page_title {
+ text-align: center;
+}
+
+.navbar {
+  height: 75px;
+}
+
 .dropdown-item {
   color: rgba(255, 255, 255, 0.5);
   &:hover {
@@ -101,11 +143,17 @@ a {
   border-top: 1px solid black;
 }
 
-.item {
+.chatroom_title {
   color: rgba(255, 255, 255, 0.5);
   position: relative;
   left: 25px;
 }
+
+#group_list {
+  padding-left: 20px;
+}
+
+//ハンバーガーメニューアイコン
 
 .navbar-dark .navbar-toggler {
   border: none;
@@ -118,7 +166,7 @@ a {
 
 .navbar-dark .navbar-toggler-icon {
   background-image:none;
-  background-color: #ffc107;;
+  background-color: #ffc107;
   width: 30px;
   height: 2px;
   display: block;
@@ -144,20 +192,6 @@ transform: rotate(-45deg);
 
 // 投稿フォーム
 
-.namespace_left {
-  position: relative;
-  right: 100px;
-}
-
-.namespace_right {
-  position: relative;
-  left: 500px;
-}
-
-.note {
-  
-}
-
 .form_body {
  position: fixed;
  bottom: 75px;
@@ -174,7 +208,7 @@ transform: rotate(-45deg);
   display: none;
 }
 
-.note_form {
+.note_form_contents {
   position: relative;
   right: 15px;
   bottom: 15px;
@@ -183,40 +217,6 @@ transform: rotate(-45deg);
 .search_form {
   display: inline-block;
   width: 200px;
-}
-
-.fa {
-    font-size: 30px;
-    color: rgba(255, 255, 255, 0.5);
-    &:hover {
-      background-color:#222222;
-      color: white;
-    }
-}
-
-.fa-pencil {
-  background-color: #EFEFEF;
-  color: black;
-}
-
-.note_btn {
-  background-color: #444444;
-}
-
-.btn-light {
-  border: none;
-}
-
-.btn-primary {
-  background-color: #007580;
-  border-color: black;
-  &:hover {
-    background-color:#222222;
-    border-color: black;
-  }
-  &:active {
-    background-color: #00464d;
-  }
 }
 
 .form-control {
@@ -232,6 +232,46 @@ transform: rotate(-45deg);
   }
 }
 
+.custom-file-label {
+  background-color: #222222;
+  color: rgba(255, 255, 255, 0.5);
+  &:hover {
+    background-color:#444444;
+    color: #fff;
+  }
+}
+
+.modal-content {
+  background-color: black;
+}
+
+.modal-footer {
+  border: none;
+}
+
+//各種ボタン
+
+.note_btn {
+  background-color: #444444;
+}
+
+.btn-light {
+  border: none;
+  margin: 0;
+}
+
+.btn-primary {
+  background-color: #007580;
+  border-color: black;
+  &:hover {
+    background-color:#444444;
+    border-color: black;
+  }
+  &:active {
+    background-color: #00464d;
+  }
+}
+
 #js_count {
   width: 40px;
   height: 40px;
@@ -242,30 +282,19 @@ transform: rotate(-45deg);
   height: 40px;
 }
 
-.custom-file-label {
-  background-color: #222222;
-  color: rgba(255, 255, 255, 0.5);
-  &:hover {
-    background-color:#444444;
-    color: #fff;
-  }
-}
-
-//削除ボタン
-
 .destroy {
   display: none;
 }
 
 input[type=checkbox]:checked ~ .destroy {
   display: block;
-}
-input[type=checkbox]:checked ~ .btn {
-  background-color: #ffc107;
-  & #js_count {
-    background-color: gray;
-  }
-  & #js_comment {
-    background-color: gray;
-  }
+// }
+// input[type=checkbox]:checked ~ .btn {
+//   background-color: #ffc107;
+//   & #js_count {
+//     background-color: gray;
+//   }
+//   & #js_comment {
+//     background-color: gray;
+//   }
 }

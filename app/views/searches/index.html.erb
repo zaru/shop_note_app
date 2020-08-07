@@ -1,8 +1,6 @@
 <p>検索結果一覧</p>
 
 <% if @search_users.present? %>
-  <% @search_users.each do |user| %>
-    <% if user.id != current_user.id %>
 
       <% if @group.blank? %>
 
@@ -13,10 +11,7 @@
         <%= render 'search_result(from_groups)' %>
 
       <% end %>
-    <% else %>
-    　<p>指定されたユーザーは存在しません</p>
-    <% end %>
-  <% end %>
+
 <% else %>
 
 <p>指定されたユーザーは存在しません</p>
@@ -25,7 +20,7 @@
 
 <% end %>
 
-<div class="form_body">
+<div class="form_body" id="searches_form_body">
   <div class="form_title">招待したいユーザーを検索</div>
 
   <%= form_with url: index_path, method: :get, local: true do |f| %>

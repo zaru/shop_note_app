@@ -6,7 +6,6 @@ class NotesController < ApplicationController
       params[:content].split(/[[:blank:]]+/).each do |note|
         current_user.notes.create(content: note, group_id: params[:group_id], image: params[:image])
       end
-      flash[:success] = "投稿しました"
       redirect_to request.referrer || root_url
     else
       flash[:danger] = "投稿に失敗しました"

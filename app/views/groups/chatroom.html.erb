@@ -4,36 +4,35 @@
       <img src= "<%= @group.image %>" class="image_icon">
     <% else %>
       <img src= "/assets/default_group_icon.png" class="image_icon">
-    <% end %>
+    <% end %><br >
 
 <%= form_with url: note_path do |f| %>
   <% if @group_notes.present? %>
     <% @group_notes.each do |note| %>
 
-
       <% unless note.user.name == current_user.name %>
-        <span class="namespace_left">
+        <div class="namespace_left">
           <%= note.user.name %>
           <% if note.user.image.present? %>
-            <img src="<%= note.user.image %>" class="image_icon" >
+            <img src="<%= note.user.image %>" class="user_icon" >
           <% else %>
-            <img src="/assets/default_user_icon.jpg" class="image_icon" >
+            <img src="/assets/default_user_icon.jpg" class="user_icon" >
           <% end %>
-        </span>
+        </div>
       <% else %>
-        <span class="namespace_right">
+        <div class="namespace_right">
           <%= note.user.name %>
           <% if note.user.image.present? %>
-            <img src="<%= note.user.image %>" class="image_icon" >
+            <img src="<%= note.user.image %>" class="user_icon" >
           <% else %>
-            <img src="/assets/default_user_icon.jpg" class="image_icon" >
+            <img src="/assets/default_user_icon.jpg" class="user_icon" >
           <% end %>
-        </span>
+        </div>
       <% end %>
 　　　　
       <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id}" %>
 
-      <div class="note btn btn-light">
+      <div class="note btn note_btn">
         <ul>
           <li>
             <div class="note_body">
@@ -59,8 +58,8 @@
               </div>
             </div>
           </li>
-          <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count">数量</button></li>
-          <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment">メモ</button></li>
+          <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count"><i class="fa fa-sort" aria-hidden="true"></i></button></li>
+          <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment"><i class="fa fa-pencil" aria-hidden="true"></i></button></li>
         </ul>
       </div>
       <div class="time"><%= note.created_at.to_s(:datetime) %></div>
@@ -130,7 +129,7 @@
     <div class="form_body">
       <%= f.hidden_field :group_id, :value => @group.id %>
       <%= f.text_field :content,class:'form form-control' , placeholder: "商品名を入力(複数ある場合は間に空白を入れて入力してください)" %>　
-      <div class="note_form">　　　
+      <div class="note_form_contents">　　　
       <%= f.label :image, class:'image_form' do %>
       <label>
         <i class="fa fa-image btn btn-dark "></i>

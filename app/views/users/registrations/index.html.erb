@@ -2,21 +2,21 @@
 
 <% @user.each do |user| %>
 
-  <ul>
+  <ul class="s_users_list">
   <% if user.image.present? %>
-    <li><img src= "<%= user.image %>" class="image_icon"></li>
+    <li class="s_user_info"><img src= "<%= user.image %>" class="image_icon"></li>
   <% else %>
-    <li><img src= "/assets/default_user_icon.jpg" class="image_icon"></li>
+    <li class="s_user_info"><img src= "/assets/default_user_icon.jpg" class="image_icon"></li>
   <% end %>
-    <li><%= user.name %></li>
-    <li>ID:<%= user.id %></li>
+    <li class="s_user_info"><%= user.name %></li>
+    <li class="s_user_info">ID : <%= user.id %></li>
 </ul>
 
 <% end %>
 
 <%= paginate @user %>
 
-<div class="form_body">
+<div class="form_body" id="searches_form_body">
   <div class="form_title">招待したいユーザーを検索</div>
 
   <%= form_with url: index_path, method: :get, local: true do |f| %>
