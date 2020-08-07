@@ -1,8 +1,41 @@
 
+.group_info {
+  border-bottom: 1px solid white;
+  height: 50px;
+}
+
+.group_name {
+  display: block;
+  text-align: left;
+  position: relative;
+  left: 50px;
+}
+
+.index_group_profile {
+  display: block;
+  position: relative;
+  bottom: 30px;
+  left: 40%;
+  width: 500px;
+  height: 50px;
+  background-color: #444444;
+  border-radius: 5%;
+  overflow: scroll;
+  }
+
 .group_profile {
-height: 200px;
-width: 300px;
-display: inline-block;
-background-color: #666666;
-border-radius: 10%; 
+  height: 200px;
+  width: 300px;
+  display: inline-block;
+  background-color: #666666;
+  border-radius: 5%;
+  overflow: scroll;
+  text-align: left;
+}
+
+._show_group_icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 10%;
+  bottom: 5px;
 }

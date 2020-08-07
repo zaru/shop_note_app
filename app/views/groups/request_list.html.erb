@@ -3,7 +3,7 @@
 
   <% @request.each do |request| %>
       <ul>
-        <% if group.image.present? %>
+        <% if request.group.image.present? %>
           <li><img src= "<%= request.group.image %>" class="image_icon"></li>
         <% else %>
           <li><img src= "/assets/default_group_icon.png" class="image_icon"></li>

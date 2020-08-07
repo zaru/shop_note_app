@@ -1,9 +1,9 @@
 <ul class="group_info">
-  <li><p>グループ名:<%= @group.name %></p></li>
+  <li><h2>グループ名:<%= @group.name %></h2></li>
   <% if @group.image.present? %>
     <li><img src= "<%= @group.image %>" class="image_icon"></li>
   <% else %>
-    <li><img src= "/assets/default_group_icon.png" class="image_icon"></li>
+    <li><img src= "/assets/default_group_icon.png" class="_show_group_icon"></li>
   <% end %>
 </ul>
 
