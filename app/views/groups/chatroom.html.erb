@@ -1,24 +1,35 @@
-<div>
+
   <%= "ルーム名：#{@group.name}" %>
     <% if @group.image.present? %>
       <img src= "<%= @group.image %>" class="image_icon">
     <% else %>
       <img src= "/assets/default_group_icon.png" class="image_icon">
     <% end %>
-</div>
 
 <%= form_with url: note_path do |f| %>
   <% if @group_notes.present? %>
     <% @group_notes.each do |note| %>
 
-      <div>
-        <%= note.user.name %>
-        <% if note.user.image.present? %>
-          <img src="<%= note.user.image %>" class="image_icon" >
-        <% else %>
-          <img src="/assets/default_user_icon.jpg" class="image_icon" >
-        <% end %>
-      </div>
+
+      <% unless note.user.name == current_user.name %>
+        <span class="namespace_left">
+          <%= note.user.name %>
+          <% if note.user.image.present? %>
+            <img src="<%= note.user.image %>" class="image_icon" >
+          <% else %>
+            <img src="/assets/default_user_icon.jpg" class="image_icon" >
+          <% end %>
+        </span>
+      <% else %>
+        <span class="namespace_right">
+          <%= note.user.name %>
+          <% if note.user.image.present? %>
+            <img src="<%= note.user.image %>" class="image_icon" >
+          <% else %>
+            <img src="/assets/default_user_icon.jpg" class="image_icon" >
+          <% end %>
+        </span>
+      <% end %>
 　　　　
       <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id}" %>
 
@@ -49,7 +60,7 @@
             </div>
           </li>
           <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count">数量</button></li>
-          <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment btn2">メモ</button></li>
+          <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment">メモ</button></li>
         </ul>
       </div>
       <div class="time"><%= note.created_at.to_s(:datetime) %></div>
@@ -122,7 +133,7 @@
       <div class="note_form">　　　
       <%= f.label :image, class:'image_form' do %>
       <label>
-        <i class="fa fa-image "></i>
+        <i class="fa fa-image btn btn-dark "></i>
         <%= f.file_field :image, class: "file_field" %>
       </label>
       <% end %>

@@ -59,7 +59,7 @@ a {
 .image_icon {
   width: 25px;
   height: 25px;
-  border-radius: 100%;
+  border-radius: 10%;
   object-fit: cover;
 }
 
@@ -107,7 +107,56 @@ a {
   left: 25px;
 }
 
+.navbar-dark .navbar-toggler {
+  border: none;
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image:none;
+  background-color: #ffc107;;
+  width: 30px;
+  height: 2px;
+  display: block;
+  position: absolute;
+  transition: ease .5s;
+}
+
+.navbar-toggler-icon:nth-of-type(1) {top:5px;}
+.navbar-toggler-icon:nth-of-type(2) {top:15px;}
+.navbar-toggler-icon:nth-of-type(3) {top:25px;}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(1) {
+top:13px;
+transform: rotate(45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(2) {
+opacity: 0;
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(3) {
+top:13px;
+transform: rotate(-45deg);
+}
+
 // 投稿フォーム
+
+.namespace_left {
+  position: relative;
+  right: 100px;
+}
+
+.namespace_right {
+  position: relative;
+  left: 500px;
+}
+
+.note {
+  
+}
 
 .form_body {
  position: fixed;
@@ -136,13 +185,38 @@ a {
   width: 200px;
 }
 
-.fa-image {
-  top: 5px;
-  font-size: 30px;
+.fa {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    &:hover {
+      background-color:#222222;
+      color: white;
+    }
+}
+
+.fa-pencil {
+  background-color: #EFEFEF;
+  color: black;
 }
 
 .note_btn {
   background-color: #444444;
+}
+
+.btn-light {
+  border: none;
+}
+
+.btn-primary {
+  background-color: #007580;
+  border-color: black;
+  &:hover {
+    background-color:#222222;
+    border-color: black;
+  }
+  &:active {
+    background-color: #00464d;
+  }
 }
 
 .form-control {
@@ -156,6 +230,16 @@ a {
     background-color:#444444;
     color: #fff;
   }
+}
+
+#js_count {
+  width: 40px;
+  height: 40px;
+}
+
+#js_comment {
+  width: 40px;
+  height: 40px;
 }
 
 .custom-file-label {
@@ -178,4 +262,10 @@ input[type=checkbox]:checked ~ .destroy {
 }
 input[type=checkbox]:checked ~ .btn {
   background-color: #ffc107;
+  & #js_count {
+    background-color: gray;
+  }
+  & #js_comment {
+    background-color: gray;
+  }
 }

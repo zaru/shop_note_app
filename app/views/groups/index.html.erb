@@ -4,14 +4,14 @@
 <p>所属グループ一覧</p>
 
   <% @groups.each do |group| %>
-  　<ul>
+  　<ul class="group_info">
     <% if group.image.present? %>
-      <li><img src= "<%= group.image %>" class="image_icon"></li>
+      <li class="group_name"><img src= "<%= group.image %>" class="image_icon">
     <% else %>
-      <li><img src= "/assets/default_group_icon.png" class="image_icon"></li>
+      <li class="group_name"><img src= "/assets/default_group_icon.png" class="image_icon">
     <% end %>
-      <li><%= link_to group.name,group_path(group.id) %></li>
-      <li>プロフィール : <%= group.profile %></li>
+      <%= link_to group.name,group_path(group.id) %></li>
+      <li class="index_group_profile"><%= group.profile %></li>
     </ul>
   <% end %>
 
