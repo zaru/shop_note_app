@@ -1,83 +1,36 @@
-<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-  <!-- <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <p>メニューバーだよ</p>
-      </div>
-      <div class="col-md-12"> -->
-  <ul>
-  <li><a><img src="/assets/default_group_icon.png" class="app_icon"></a></li>
-  <li><p class="logo1">SHOP<span class="logo2">.</span>NOTE</p></li>
-  </ul>
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
 
-    <span class="navbar-toggler-icon"></span>
-    <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="bs-navi">
-    <ul class="navbar-nav bg-dark ">
-
-  <% if user_signed_in? %>
-
-      <li class="nav-item"><a class="nav-link" <%= link_to "#{current_user.name}さんがログイン中",edit_user_registration_path(current_user) %></a></li>
-      <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー情報</a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class= "dropdown-item"<%= link_to "ユーザー情報編集",edit_user_registration_path(current_user) %></a>
-          <a class= "dropdown-item"<%= link_to "お気に入り商品",new_favorite_item_path %></a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
-          <a class= "dropdown-item"<%= link_to "ユーザー一覧",users_index_path %></a>
-          <div class="dropdown-divider"></div>
-          <a class= "dropdown-item"<%= link_to "ログアウト",logout_path %></a>
+          <a class="dropdown-item" href="#">Something else here</a>
         </div>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">グループ情報</a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" <%= link_to "グループ作成",new_group_path %></a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" <%= link_to "所属グループ一覧",groups_path %></a>
-
-        <a class="dropdown-item" <%= link_to  request_list_groups_path, method: :get do %>
-          グループリクエスト一覧
-          <% if @request.present? %>
-            <i class="fa fa-exclamation-circle"></i>　<%= @request.count %>件</a>
-          <% end %>
-  <% end %>
-
-            <% if @group_lists.present? %>
-              <div class="dropdown-divider"></div>
-              <div class="chatroom_title">チャットルーム</div>
-                <% @group_lists.each do |group| %>
-                  <ul>
-                    <li class="nav-link" id="group_list"><a class="group_name"><%= link_to group.group.name,chatroom_group_path(group.group.id) %></a>
-                      <% if current_user.id == group.group.admin_user_id %>
-                        <span class="delete_link"><%= link_to "削除", group_path(group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></span>
-                      <% end %>
-                    </li>
-                  </ul>
-                <% end %>
-            <% end %>
-        </div>
-
-      <li><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>
-
-  <% else %>
-
-    <li class="nav-item"><a class= "nav-link" <%= link_to "ホーム",root_path %></a></li>
-    <li class="nav-item"><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>
-    <li class="nav-item"><a class= "nav-link" <%= link_to "新規登録",signup_path %></a><li>
-    <li class="nav-item"><a class= "nav-link" <%= link_to "ログイン",new_user_session_path %></a><li>
-
-  <% end %>
-
-　　　</ul>
-　　</div>
-
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 </nav>
-<!-- </div>
-</div>
-</div> -->
