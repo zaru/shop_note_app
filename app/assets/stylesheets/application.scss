@@ -56,6 +56,10 @@ a:hover {
   color: #444444;
 }
 
+a:focus {
+  box-shadow:none !important;
+}
+
 //画像、アイコン表示
 
 .app_icon {
@@ -139,8 +143,12 @@ a:hover {
   }
 }
 
+.dropdown-menu {
+  border: 1px solid #222222;
+}
+
 .dropdown-divider {
-  border-top: 1px solid black;
+  border-top: 0.5px solid #222222;
 }
 
 .nav_item_title {
