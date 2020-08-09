@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = current_user.groups.where(params[:id])
+
   end
 
   def create
@@ -75,6 +76,7 @@ class GroupsController < ApplicationController
 
   def chatroom
     @group = Group.find(params[:id])
+    @notes = Note.find_by(id: params[:id])
     @group_notes = Note.where(group_id: @group.id)
     @members = @group.users.select(:name)
   end

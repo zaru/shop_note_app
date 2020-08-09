@@ -300,13 +300,4 @@ transform: rotate(-45deg);
 
 input[type=checkbox]:checked ~ .destroy {
   display: block;
-// }
-// input[type=checkbox]:checked ~ .btn {
-//   background-color: #ffc107;
-//   & #js_count {
-//     background-color: gray;
-//   }
-//   & #js_comment {
-//     background-color: gray;
-//   }
 }

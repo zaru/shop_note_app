@@ -11,14 +11,6 @@ class NotesController < ApplicationController
       flash[:danger] = "投稿に失敗しました"
         redirect_to request.referrer || root_url
     end
-    # @note = current_user.notes.build(note_params)
-    # if @note.save
-    # flash[:success] = "投稿しました"
-    # redirect_to request.referrer || root_url
-    # else
-      # flash[:danger] = "投稿に失敗しました"
-      # render 'home/index'
-    # end
   end
 
   def count
@@ -35,6 +27,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
+    binding.pry
     params[:note][:id].each do |note_id|
       Note.find_by(id: note_id).delete
     end

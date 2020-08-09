@@ -5,8 +5,8 @@
 
     <% @own_notes.each do |note| %>
 
-    <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_#{note.id} " %>
-
+    <%= check_box_tag 'note[id][]', note.id, checked = false,　id: "orange", :id => "note_#{note.id} " %>
+    <label for="note_">
     <div class="note btn note_btn" >
       <ul>
         <li>
@@ -37,6 +37,7 @@
         <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment"><i class="fa fa-pencil" aria-hidden="true"></i></button></li>
       </ul>
     </div>
+    </label>
     <div class="time"><%= note.created_at.to_s(:datetime) %></div>
 
 
