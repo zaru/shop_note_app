@@ -26,12 +26,13 @@
   <div class="field">
     <%= f.label :パスワード確認用 %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control" %>
-  </div><br />
+  </div>
 
+  <div class="custom_file_title">アイコン画像</div>
   <div class="custom-file">
-  <%= f.file_field :image, class: "custom-file-input" ,id: "customFile" %>
-  <label class="custom-file-label" for="customFile">アイコンにする画像を選んでください</label>
-</div>
+    <%= f.file_field :image, class: "custom-file-input" ,id: "customFile" %>
+    <label class="custom-file-label" for="customFile">タップして画像を選択</label>
+  </div>
 
   <div class="actions">
     <br /><%= f.submit "登録完了",class:"btn btn-primary" %>
