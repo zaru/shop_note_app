@@ -5,6 +5,7 @@
 
   <%= form_with url: favorite_items_destroy_path do |f| %>
 
+    
     　<p>-あ行-</p>
         <% @A_line.each do |item| %>
           <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
@@ -71,7 +72,7 @@
           <%= item.name %>
         <% end %>
 
-        <li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
+      <br /><li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
 
 
 

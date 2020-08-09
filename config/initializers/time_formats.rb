@@ -1,1 +1,1 @@
-Time::DATE_FORMATS[:datetime] = '%-m月%-d日 %-H:%-M'
+Time::DATE_FORMATS[:datetime] = '%-m月%-d日 %R'

@@ -90,7 +90,7 @@ class FavoriteItemsController < ApplicationController
     def create
       if params[:favorite_item][:name].present?
         params[:favorite_item][:name].split(/[[:blank:]]+/).each do |item|
-          unless FavoriteItem.find_by(name: item).present?
+          unless FavoriteItem.find_by(name: item,user_id: current_user.id).present?
             current_user.favorite_items.create(name: item)
           end
         end
