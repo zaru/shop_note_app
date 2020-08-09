@@ -64,6 +64,10 @@ a:hover {
   box-shadow:none !important;
 }
 
+button:focus {
+	outline:0;
+}
+
 //画像、アイコン表示
 
 .app_icon {
