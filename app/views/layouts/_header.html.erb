@@ -45,7 +45,7 @@
 
             <% if @group_lists.present? %>
               <div class="dropdown-divider"></div>
-              <div class="chatroom_title">チャットルーム</div>
+              <div class="nav_item_title">チャットルーム一覧</div>
                 <% @group_lists.each do |group| %>
                   <ul>
                     <li class="nav-link" id="group_list"><a class="group_name"><%= link_to group.group.name,chatroom_group_path(group.group.id) %></a>

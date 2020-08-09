@@ -143,7 +143,7 @@ a:hover {
   border-top: 1px solid black;
 }
 
-.chatroom_title {
+.nav_item_title {
   color: rgba(255, 255, 255, 0.5);
   position: relative;
   left: 25px;
@@ -151,6 +151,10 @@ a:hover {
 
 #group_list {
   padding-left: 20px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 //ハンバーガーメニューアイコン
@@ -189,13 +193,6 @@ opacity: 0;
 top:13px;
 transform: rotate(-45deg);
 }
-
-.dropdown-menu.show {
-    display: block;
-}
-
-// .dropdown-menu.show {
-//     display: block;
 
 // 投稿フォーム
 
