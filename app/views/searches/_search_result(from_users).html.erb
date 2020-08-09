@@ -1,11 +1,13 @@
 
 <% if @search_users.present? %>
   <% @search_users.each do |user| %>
+    <div class="users_list">
+
 
     <ul>
-      <li>
-        <%= user.name %>
-      </li>
+      <p>グループを選択してリクエスト</p>
+      <li class="s_users_info"><%= user.name %></li>
+      <li class="s_users_info">ID : <%= user.id %></li>
       <li>
         <% if current_user.groups.present? %>
 
@@ -13,29 +15,41 @@
 
   　　　　   <%= f.hidden_field :user_id, :value => user.id %>
 
-            <p>グループを選択：</p>
-
             <%= f.collection_select :group_id,current_user.groups.order(id: :desc),:id,:name %>
 
             <%= f.submit "グループ招待する",class: "btn btn-primary" %>
+
 　　　　　　<% end %>
-
       </li>
-        <% if user.group_members.present? %>
+      </ul>
 
-          <% user.group_members.each do |group| %>
+      <% @group = user.group_members.where(group_id: current_user.groups, activated: false) %>
+
+      <% if @group.present? %>
+
+      <br/><p>ボタンをタップして申請中のリクエストを解除</p>
+
+      <ul>
+
+
+
+          <% @group.each do |group| %>
+
             <li>
               <%= form_with url:invite_reset_group_path(user.id) do |f| %>
-                <%= f.hidden_field :user_id, :value => user.id %>
-                <%= f.submit "リクエストを解除",class: "btn btn-default" %>
+
+                <%= f.hidden_field :group_id, :value => group.group.id %>
+
+                <%= f.submit group.group.name,class: "btn btn-warning" %>
+
               <% end %>
             </li>
           <% end %>
         <% end %>
-      <% end %>  
+      <% end %>
       </ul>
+    </div>
   <% end %>
-
 <% else %>
 
 <p>指定されたユーザーは存在しません</p>

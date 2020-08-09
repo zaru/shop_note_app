@@ -3,6 +3,17 @@
  padding-top: 25px;
 }
 
+.users_list {
+  border-bottom: 1px solid #444444;
+  padding-bottom: 10px;
+}
+
+select {
+  background-color: #999999;
+  position: relative;
+  top: 2px;
+}
+
 .s_users_list {
   border-bottom: 1px solid #444444;
   text-align: left;

@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
 
   def invite_reset
     @group = Group.find(params[:group_id])
-    @group.group_members.find_by(user_id: params[:user_id]).destroy
+    @group.group_members.find_by(user_id: params[:id]).destroy
     redirect_to request.referrer || root_url
 
   end
