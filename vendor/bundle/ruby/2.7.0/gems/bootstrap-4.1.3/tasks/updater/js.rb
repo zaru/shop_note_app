@@ -20,7 +20,7 @@ class Updater
       {
           'assets/javascripts/bootstrap-sprockets.js' => manifest,
           'assets/javascripts/bootstrap.js'           => dist_js['bootstrap.js'],
-          # 'assets/javascripts/bootstrap.min.js'       => dist_js['bootstrap.min.js'],
+          'assets/javascripts/bootstrap.min.js'       => dist_js['bootstrap.min.js'],
       }.each do |path, content|
         save_file path, remove_source_mapping_url(content)
         log_processed path
