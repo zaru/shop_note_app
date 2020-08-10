@@ -61,20 +61,26 @@ a:hover {
   margin: 0;
 }
 
+@media (min-width: 577px) {
+    .container-fluid {
+        width: 560px;
+        }
+    }
+
 @media (min-width: 768px) {
-    .container {
+    .container-fluid {
         width: 750px;
         }
     }
 
 @media (min-width: 992px) {
-    .container {
+    .container-fluid {
         width: 970px;
         }
     }
 
 @media (min-width: 1200px) {
-    .container {
+    .container-fluid {
         width: 1170px;
         }
     }
