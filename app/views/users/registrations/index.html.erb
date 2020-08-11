@@ -1,23 +1,8 @@
-<p>ユーザー一覧</p>
+<p>ユーザー検索</p>
 
-<% @user.each do |user| %>
+<p>下記フォームにユーザー名を入力して検索ボタンを押してください</p>
 
-  <ul class="s_users_list">
-  <% if user.image.present? %>
-    <li class="s_user_info"><img src= "<%= user.image %>" class="image_icon"></li>
-  <% else %>
-    <li class="s_user_info"><img src= "/assets/default_user_icon.jpg" class="image_icon"></li>
-  <% end %>
-    <li class="s_user_info"><%= user.name %></li>
-    <li class="s_user_info">ID : <%= user.id %></li>
-</ul>
-
-<% end %>
-
-<%= paginate @user %>
-
-<div class="form_body" id="searches_form_body">
-  <div class="form_title">招待したいユーザーを検索</div>
+<div class="form_body" id="index_searches_form">
 
   <%= form_with url: index_path, method: :get, local: true do |f| %>
       <%= f.text_field :name,class:'form-control search_form', placeholder: "ユーザー名を入力" %>

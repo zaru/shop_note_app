@@ -9,62 +9,63 @@
 
         <div class="col-md-6">
         <%= form_with url: note_path do |f| %>
-        <%# <%= form_for @note do |f| %>
 
           <% if @own_notes.present? %>
 
             <% @own_notes.each do |note| %>
 
-            <%= check_box_tag 'note[id][]', note.id, checked = false,　id: "orange", :id => "note_#{note.id} " %>
-            <label for="note_">
-            <div class="note btn note_btn" >
-              <ul>
-                <li>
-                  <div class="note_body">
-                    <div class="note_content">
-                      <%= note.content %>
-                      <% if note.image.present? %>
-                        <img src="<%= note.image %>" class="note_image" >
-                      <% end %>
-                      <%= note.count %>
-                        <% if note.count.present? %>
-                          <span>個</span>
+              <%= check_box_tag 'note[id][]', note.id, checked = false,　id: "orange", :id => "note_#{note.id} " %>
+
+              <div class="note btn note_btn" >
+                <ul>
+                  <li>
+                    <div class="note_body">
+                      <div class="note_content">
+                        <%= note.content %>
+                        <% if note.image.present? %>
+                          <img src="<%= note.image %>" class="note_image" >
                         <% end %>
-                    </div>
+                        <%= note.count %>
+                          <% if note.count.present? %>
+                            <span>個</span>
+                          <% end %>
+                      </div>
 
-                    <div class="comment">
-                      <% note.comments.each do |comment| %>
-                        <div class="comment_list">
-                          <%= link_to comment.content ,"/comments/#{comment.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
-                            <span> : </span>
-                          <%= comment.user.name %>
-                        </div>
-                      <% end %>
+                      <div class="comment">
+                        <% note.comments.each do |comment| %>
+                          <div class="comment_list">
+                            <%= link_to comment.content ,"/comments/#{comment.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+                              <span> : </span>
+                            <%= comment.user.name %>
+                          </div>
+                        <% end %>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count"><i class="fa fa-sort" aria-hidden="true"></i></button></li>
-                <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment"><i class="fa fa-pencil" aria-hidden="true"></i></button></li>
-              </ul>
+                  </li>
+                  <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count"><i class="fa fa-sort" aria-hidden="true"></i></button></li>
+                  <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment"><i class="fa fa-pencil" aria-hidden="true"></i></button></li>
+                </ul>
+              </div>
+
+              <div class="time"><%= note.created_at.to_s(:datetime) %></div>
+
+            <% end %>
+
+            <div class="destroy">
+              <%= f.submit '購入済み', class: 'btn btn btn-warning' %>
             </div>
-            </label>
-            <div class="time"><%= note.created_at.to_s(:datetime) %></div>
-
-
-          <% end %>
-
+            
         <% else %>
           <p>現在買うものはありません</p>
         <% end %>
 
-        <div class = "destroy">
-          <%= f.submit '購入済み', class: 'btn btn btn-warning' %>
-        </div>
-      </div>
 
+      </div>
       <div class="col-md-3 hidden-sm hidden-xs side_right">
         <p>広告スペース</p>
       </div>
+
+
 
     </div>
   </div>
