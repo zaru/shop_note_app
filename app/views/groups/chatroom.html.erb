@@ -25,28 +25,6 @@
               <% if @group_notes.present? %>
                 <% @group_notes.each do |note| %>
 
-                  <% unless note.user.name == current_user.name %>
-                    <div class="namespace_left">
-                      <%= note.user.name %>
-                      <% if note.user.image.present? %>
-                        <img src="<%= note.user.image %>" class="user_icon" >
-                      <% else %>
-                        <img src="/assets/default_user_icon.jpg" class="user_icon" >
-                      <% end %>
-                    </div>
-
-                  <% else %>
-
-                    <div class="namespace_right">
-                      <%= note.user.name %>
-                      <% if note.user.image.present? %>
-                        <img src="<%= note.user.image %>" class="user_icon" >
-                      <% else %>
-                        <img src="/assets/default_user_icon.jpg" class="user_icon" >
-                      <% end %>
-                    </div>
-                  <% end %>
-
                   <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_id" %>
 
                   <div class="note btn note_btn">
