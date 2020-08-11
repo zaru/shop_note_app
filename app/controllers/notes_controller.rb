@@ -27,7 +27,6 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     params[:note][:id].each do |note_id|
       Note.find_by(id: note_id).delete
     end
