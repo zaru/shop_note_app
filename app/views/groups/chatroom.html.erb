@@ -7,93 +7,95 @@
         </div>
       </div> -->
       <div class="row">
+
         <div class="col-md-3 hidden-sm hidden-xs">
           <p>広告スペース</p>
         </div>
 
-          <div class="col-md-6">
+        <div class="col-md-6">
 
-      <%= "ルーム名：#{@group.name}" %>
-        <% if @group.image.present? %>
-          <img src= "<%= @group.image %>" class="image_icon">
-        <% else %>
-          <img src= "/assets/default_group_icon.png" class="image_icon">
-        <% end %><br >
+          <%= "ルーム名：#{@group.name}" %>
+            <% if @group.image.present? %>
+              <img src= "<%= @group.image %>" class="image_icon">
+            <% else %>
+              <img src= "/assets/default_group_icon.png" class="image_icon">
+            <% end %><br >
 
-    <%= form_with url: note_path do |f| %>
-      <% if @group_notes.present? %>
-        <% @group_notes.each do |note| %>
+            <%= form_with url: note_path do |f| %>
+              <% if @group_notes.present? %>
+                <% @group_notes.each do |note| %>
 
-          <% unless note.user.name == current_user.name %>
-            <div class="namespace_left">
-              <%= note.user.name %>
-              <% if note.user.image.present? %>
-                <img src="<%= note.user.image %>" class="user_icon" >
-              <% else %>
-                <img src="/assets/default_user_icon.jpg" class="user_icon" >
-              <% end %>
-            </div>
-          <% else %>
-            <div class="namespace_right">
-              <%= note.user.name %>
-              <% if note.user.image.present? %>
-                <img src="<%= note.user.image %>" class="user_icon" >
-              <% else %>
-                <img src="/assets/default_user_icon.jpg" class="user_icon" >
-              <% end %>
-            </div>
-          <% end %>
-
-          <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_id" %>
-
-          <label for="orange">
-          <div class="note btn note_btn">
-            <ul>
-              <li>
-                <div class="note_body">
-                  <div class="note_content">
-                    <%= note.content %>
-                    <% if note.image.present? %>
-                      <img src="<%= note.image %>" class="note_image" >
-                    <% end %>
-                    <%= note.count %>
-                      <% if note.count.present? %>
-                        <span>個</span>
+                  <% unless note.user.name == current_user.name %>
+                    <div class="namespace_left">
+                      <%= note.user.name %>
+                      <% if note.user.image.present? %>
+                        <img src="<%= note.user.image %>" class="user_icon" >
+                      <% else %>
+                        <img src="/assets/default_user_icon.jpg" class="user_icon" >
                       <% end %>
+                    </div>
+
+                  <% else %>
+
+                    <div class="namespace_right">
+                      <%= note.user.name %>
+                      <% if note.user.image.present? %>
+                        <img src="<%= note.user.image %>" class="user_icon" >
+                      <% else %>
+                        <img src="/assets/default_user_icon.jpg" class="user_icon" >
+                      <% end %>
+                    </div>
+                  <% end %>
+
+                  <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_id" %>
+
+                  <div class="note btn note_btn">
+                    <ul>
+                      <li>
+                        <div class="note_body">
+                          <div class="note_content">
+                            <%= note.content %>
+                            <% if note.image.present? %>
+                              <img src="<%= note.image %>" class="note_image" >
+                            <% end %>
+                            <%= note.count %>
+                              <% if note.count.present? %>
+                                <span>個</span>
+                              <% end %>
+                          </div>
+
+                          <div class="comment">
+                            <% note.comments.each do |comment| %>
+                              <div class="comment_list">
+                                <%= link_to comment.content ,"/comments/#{comment.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+                                  <span> : </span>
+                                <%= comment.user.name %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </li>
+                      <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count"><i class="fa fa-sort" aria-hidden="true"></i></button></li>
+                      <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment"><i class="fa fa-pencil" aria-hidden="true"></i></button></li>
+                    </ul>
                   </div>
+                  <div class="time"><%= note.created_at.to_s(:datetime) %></div>
 
-                  <div class="comment">
-                    <% note.comments.each do |comment| %>
-                      <div class="comment_list">
-                        <%= link_to comment.content ,"/comments/#{comment.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
-                          <span> : </span>
-                        <%= comment.user.name %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </li>
-              <li><button type="button" class="btn js_count_btn" data-toggle="modal" data-target="#count_Modal" value="<%= note.id %>" id="js_count"><i class="fa fa-sort" aria-hidden="true"></i></button></li>
-              <li><button type="button" class="btn js_comment_btn" data-toggle="modal" data-target="#comment_Modal" value="<%= note.id %>" id="js_comment"><i class="fa fa-pencil" aria-hidden="true"></i></button></li>
-            </ul>
-          </div>
-          </label>
-          <div class="time"><%= note.created_at.to_s(:datetime) %></div>
+                <% end %>
 
-        <% end %>
+              <% else %>
+                <p>現在買うものはありません</p>
 
-      <% else %>
-        <p>現在買うものはありません</p>
-      <% end %>
+              <% end %>
 
-      <div class = "destroy">
-        <%= f.submit '購入済み', class: 'btn btn btn-warning' %>
-      </div>
-      </div>
+            <div class = "destroy">
+              <%= f.submit '購入済み', class: 'btn btn btn-warning' %>
+            </div>
+        </div>
 
-      <div class="col-md-3 hidden-sm hidden-xs">
-        <p>広告スペース</p>
-      </div>
+        <div class="col-md-3 hidden-sm hidden-xs">
+          <p>広告スペース</p>
+        </div>
 
       </div>
     </div>
