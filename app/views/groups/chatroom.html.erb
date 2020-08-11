@@ -102,7 +102,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <% end %>
 
@@ -154,22 +153,24 @@
   })
 </script>
 
-<div class="forms">
-  <%= form_with url: notes_path do |f| %>
-    <div class="form_body">
-      <%= f.hidden_field :group_id, :value => @group.id %>
-      <%= f.text_field :content,class:'form form-control' , placeholder: "商品名を入力(複数ある場合は間に空白を入れて入力してください)" %>　
-      <div class="note_form_contents">　　　
-      <%= f.label :image, class:'image_form' do %>
-      <label>
-        <i class="fa fa-image btn btn-dark "></i>
-        <%= f.file_field :image, class: "file_field" %>
-      </label>
-      <% end %>
-      <%= link_to favorite_items_path(group_id: @group.id), class:"btn btn-dark" do %>
-      <i class="fa fa-star" aria-hidden="true"></i>
-      <% end %>
-      <%= f.submit "投稿", class: "btn btn-primary form-btn " %>
-    </div>
-  <% end %>
+  <div class="forms">
+    <%= form_with url: notes_path do |f| %>
+      <div class="form_body">
+        <%= f.hidden_field :group_id, :value => @group.id %>
+        <%= f.text_field :content,class:'form form-control' , placeholder: "商品名を入力(複数ある場合は間に空白を入れて入力してください)" %>　
+        <div class="note_form_contents">　　　
+          <%= f.label :image, class:'image_form' do %>
+          <label>
+            <i class="fa fa-image btn btn-dark "></i>
+            <%= f.file_field :image, class: "file_field" %>
+          </label>
+          <% end %>
+          <%= link_to favorite_items_path(group_id: @group.id), class:"btn btn-dark" do %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <% end %>
+          <%= f.submit "投稿", class: "btn btn-primary form-btn " %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
