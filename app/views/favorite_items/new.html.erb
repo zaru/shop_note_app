@@ -5,7 +5,7 @@
 
   <%= form_with url: favorite_items_destroy_path do |f| %>
 
-    
+
     　<p>-あ行-</p>
         <% @A_line.each do |item| %>
           <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
@@ -69,19 +69,16 @@
     　<p>-その他-</p>
         <% @other_line.each do |item| %>
           <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
-          <%= item.name %>
+          <%= item.name %><br />
         <% end %>
 
-      <br /><li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
+      <li><%= link_to "戻る",:back , class:"btn btn-dark favorite_back_btn" %></li>
 
+  　  <%= f.submit "商品をまとめて削除",class:"btn btn-warning destroy" %>
 
-
-  　<div class="destroy">
-  　  <%= f.submit "商品をまとめて削除",class:"btn btn-warning" %>
-  　</div>
   <% end %>
 
-  <div class= "form_body">
+  <div class= "form_body" id="favorite_form">
 
       <div class="f_item_form">
         <p class="form_title">一覧に追加したい商品を入力してください</p>
@@ -97,7 +94,7 @@
 
 　<li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
 
-  <div class= "form_body">
+  <div class= "form_body" id="favorite_form">
       <div class="f_item_form">
         <p class="form_title">一覧に追加したい商品を入力してください</p>
         <%= form_with model: @favorite_item do |f| %>

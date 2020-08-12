@@ -67,11 +67,11 @@
       　<p>-その他-</p>
           <% @other_line.each do |item| %>
             <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
-            <%= item.name %>
+            <%= item.name %><br />
           <% end %>
 
-          <li><%= link_to "登録ページへ移動",new_favorite_item_path, class:"btn btn-dark" %></li><br />
-          <li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
+          <li><%= link_to "登録ページへ移動",new_favorite_item_path, class:"btn btn-dark favorite_back_btn" %></li>
+          <li><%= link_to "戻る",:back , class:"btn btn-dark favorite_back_btn" %></li>
 
     <% if params[:group_id].present? %>
 
@@ -79,7 +79,7 @@
 
     <% end %>
 
-  <div class= "form_body">
+  <div class= "form_body" id="searches_form">
     <div class="form_title">投稿したい商品を選択し、投稿ボタンを押してください</div>
 
       <div class="f_item_form">
