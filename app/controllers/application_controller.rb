@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :group_list
   before_action :group_badge
-  # before_action :form_path
 
   protected
     def configure_permitted_parameters
@@ -34,8 +33,4 @@ class ApplicationController < ActionController::Base
         @request = current_user.group_members.where(activated: false)
       end
     end
-
-    # def form_path
-    #     @group = Group.find_by(params[:id])
-    # end
 end

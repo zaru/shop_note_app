@@ -43,12 +43,21 @@
   bottom: 5px;
 }
 
-.namespace_left {
-  font-size: 10px;
-  margin-right: 20px;
+.row .info {
+  height: 0;
 }
 
-.namespace_right {
-  font-size: 10px;
-  margin-left: 20px;
+.group_title {
+  position: relative;
+  bottom: 30px;
 }
+
+// .namespace_left {
+//   font-size: 10px;
+//   margin-right: 20px;
+// }
+//
+// .namespace_right {
+//   font-size: 10px;
+//   margin-left: 20px;
+// }

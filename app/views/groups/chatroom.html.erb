@@ -1,34 +1,36 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <!-- <div class="row">
-        <div class="visible-xs col-xs-12">
-          <p>広告スペース</p>
-        </div>
-      </div> -->
       <div class="row">
 
-        <div class="col-md-3 hidden-sm hidden-xs">
-          <p>広告スペース</p>
+        <div class="col-md-2 d-block d-md-none Sidebar_sm top_bar">
+          <p>広告スペース(小)</p>
+        </div>
+        <div class="col-md-2 d-none d-md-block SideBar_bg">
+          <p>広告スペース(大)</p>
         </div>
 
-        <div class="col-md-6">
-
+        <div class="col-md-8">
+　　　　　  <div class="row info group_title">
+            <div class="col-12">
           <%= "ルーム名：#{@group.name}" %>
             <% if @group.image.present? %>
               <img src= "<%= @group.image %>" class="image_icon">
             <% else %>
               <img src= "/assets/default_group_icon.png" class="image_icon">
             <% end %><br >
+            </div>
+          </div>
 
             <%= form_with url: note_path do |f| %>
               <% if @group_notes.present? %>
                 <% @group_notes.each do |note| %>
-                <ul>
-                  <li class="time"><%= note.created_at.to_s(:datetime) %></li>
+
+
+                  <ul class="row info">
 
                   <% unless note.user.name == current_user.name %>
-                    <li class="namespace_left">
+                    <li class="col-6 namespace_left">
                       <%= note.user.name %>
                       <% if note.user.image.present? %>
                         <img src="<%= note.user.image %>" class="user_icon" >
@@ -36,10 +38,11 @@
                         <img src="/assets/default_user_icon.jpg" class="user_icon" >
                       <% end %>
                     </li>
-
                   <% else %>
-
-                    <li class="namespace_right">
+                  <li class="col-6"></li>
+                  <% end %>
+                  <% if note.user.name == current_user.name %>
+                    <li class="col-6">
                       <%= note.user.name %>
                       <% if note.user.image.present? %>
                         <img src="<%= note.user.image %>" class="user_icon" >
@@ -47,8 +50,14 @@
                         <img src="/assets/default_user_icon.jpg" class="user_icon" >
                       <% end %>
                     </li>
+                  <% else %>
+                    <li class="col-6 namespace_right"></li>
                   <% end %>
-                </ul>
+                  </ul>
+
+
+                <div class="time"><%= note.created_at.to_s(:datetime) %></div>
+
                   <%= check_box_tag 'note[id][]', note.id, checked = false, :id => "note_id" %>
 
                   <div class="note btn note_btn">
@@ -86,24 +95,26 @@
                 <% end %>
 
               <% else %>
+
                 <p>現在買うものはありません</p>
 
               <% end %>
 
-            <div class = "destroy">
-              <%= f.submit '購入済み', class: 'btn btn btn-warning' %>
-            </div>
+          <div class = "destroy">
+            <%= f.submit '購入しました', class: 'btn btn btn-warning' %>
+          </div>
         </div>
-
-        <div class="col-md-3 hidden-sm hidden-xs">
-          <p>広告スペース</p>
+        <% end %>
+        <div class="col-md-2 d-block d-md-none Sidebar_sm bottom_bar">
+          <p>広告スペース(小)</p>
         </div>
-
+        <div class="col-md-2 d-none d-md-block SideBar_bg">
+          <p>広告スペース(大)</p>
+        </div>
       </div>
     </div>
   </div>
-
-<% end %>
+</div>
 
 <!-- 数量入力用モーダル -->
 <div class="modal fade" id="count_Modal" tabindex="-1" role="dialog" aria-labelledby="count_ModalLabel" aria-hidden="true">
@@ -144,14 +155,7 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  $('.js_count_btn').click(function() {
-  $('#count_id').val(this.value);
-  });
-  $('.js_comment_btn').on('click', function () {
-  $('#comment_id').val(this.value);
-  })
-</script>
+
 
   <div class="forms">
     <%= form_with url: notes_path do |f| %>
@@ -173,4 +177,13 @@
       </div>
     <% end %>
   </div>
-</div>
+
+
+<script type="text/javascript">
+  $('.js_count_btn').click(function() {
+  $('#count_id').val(this.value);
+  });
+  $('.js_comment_btn').on('click', function () {
+  $('#comment_id').val(this.value);
+  })
+</script>

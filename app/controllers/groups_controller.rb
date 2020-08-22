@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
 
   def index
     @groups = current_user.groups.where(params[:id])
-
   end
 
   def create
@@ -25,7 +24,6 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
-
   end
 
   def update
@@ -59,7 +57,6 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group.group_members.find_by(user_id: params[:id]).destroy
     redirect_to request.referrer || root_url
-
   end
 
   def join

@@ -3,14 +3,16 @@
     <div class="col-md-12">
       <div class="row">
 
-        <div class="col-md-3 hidden-sm hidden-xs side-left">
-          <p>広告スペース</p>
+        <div class="col-md-2 d-block d-md-none Sidebar_sm top_bar">
+          <p>広告スペース(小)</p>
+        </div>
+        <div class="col-md-2 d-none d-md-block SideBar_bg">
+          <p>広告スペース(大)</p>
         </div>
 
-        <div class="col-md-6">
-        <%= form_with url: note_path do |f| %>
-
-          <% if @own_notes.present? %>
+        <div class="col-md-8">
+        <% if @own_notes.present? %>
+          <%= form_with url: note_path do |f| %>
 
             <% @own_notes.each do |note| %>
 
@@ -51,25 +53,34 @@
 
             <% end %>
 
-              <%= f.submit '購入済み', class: 'btn btn btn-warning destroy' %>
+            <%= f.submit '購入しました', class: 'btn btn btn-warning destroy' %>
 
+          <% end %>
         <% else %>
           <p>現在買うものはありません</p>
         <% end %>
 
+        <ul>
+          <li><%= link_to "1つ前に戻る",tutorial_index_f_item_path, class:"btn btn-dark" %></li>
+          <!-- <li><%= link_to "グループの作成方法　の説明に進む",tutorial_index_f_item_path, class:"btn btn-warning" %></li> -->
+          <li><%= link_to "チュートリアルを終了",root_path, class:"btn btn-dark" %></li>
+        </ul>
 
+        </div>
+        <div class="col-md-2 d-block d-md-none Sidebar_sm bottom_bar">
+          <p>広告スペース(小)</p>
+        </div>
+        <div class="col-md-2 d-none d-md-block SideBar_bg">
+          <p>広告スペース(大)</p>
+        </div>
       </div>
-      <div class="col-md-3 hidden-sm hidden-xs side_right">
-        <p>広告スペース</p>
-      </div>
-
-
-
     </div>
   </div>
 </div>
 
-      <% end %>
+
+
+
 
     <!-- 数量入力用モーダル -->
     <div class="modal fade" id="count_Modal" tabindex="-1" role="dialog" aria-labelledby="count_ModalLabel" aria-hidden="true">
@@ -109,25 +120,8 @@
         </div>
       </div>
     </div>
-</div>
-<div class="form_body">
-  <%= form_with url: notes_path do |f| %>
 
-      <%= f.text_field :content,class:'form form-control' , placeholder: "商品名を入力(複数ある場合は間に空白を入れて入力してください)" %>　
-      <div class="note_form_contents">　　　
-      <%= f.label :image, class:'image_form' do %>
-      <label>
-        <i class="fa fa-image btn btn-dark "></i>
-        <%= f.file_field :image, class: "file_field" %>
-      </label>
-      <% end %>
-      <%= link_to favorite_items_path, class:"btn btn-dark" do %>
-      <i class="fa fa-star" aria-hidden="true"></i>
-      <% end %>
-      <%= f.submit "投稿", class: "btn btn-primary form-btn " %>
-    </div>
-  <% end %>
-</div>
+<div class="form_body" id="searches_form"></div>
 
 <script type="text/javascript">
 $('.js_count_btn').click(function() {

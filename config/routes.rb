@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/index', to: 'users/registrations#index'
     root 'home#index'
+    get "/tutorial_top", :to => "home#tutorial_top"
+    get "/tutorial_note", :to => "home#tutorial_note"
+    get "/tutorial_note_index", :to => "home#tutorial_note_index"
+    get "/tutorial_create_f_item", :to => "home#tutorial_create_f_item"
+    get "/tutorial_index_f_item", :to => "home#tutorial_index_f_item"
     get "/help", :to => "home#help"
     get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"

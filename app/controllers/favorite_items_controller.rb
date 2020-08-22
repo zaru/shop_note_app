@@ -94,9 +94,16 @@ class FavoriteItemsController < ApplicationController
             current_user.favorite_items.create(name: item)
           end
         end
-        redirect_to request.referrer || favorite_items_path
+        url = Rails.application.routes.recognize_path(request.referrer)
+        if url == {:controller=>"home", :action=>"tutorial_create_f_item"}
+          flash[:success] = "登録に成功しました！ページ下部のリンクから次のページへ進みましょう！"
+          redirect_to tutorial_create_f_item_path
+        else
+          flash[:success] = "お気に入り商品を登録しました"
+          redirect_to request.referrer || favorite_items_path
+        end
       else
-        flash[:danger] = "投稿に失敗しました"
+        flash[:danger] = "登録に失敗しました"
         redirect_to request.referrer || root_url
       end
     end
@@ -106,7 +113,7 @@ class FavoriteItemsController < ApplicationController
         current_user.favorite_items.find_by(id: item_id).delete
       end
       flash[:success] = "お気に入り商品を削除しました"
-      redirect_to new_favorite_item_path
+      redirect_to request.referrer || new_favorite_item_path
     end
 
     def post
@@ -118,8 +125,14 @@ class FavoriteItemsController < ApplicationController
           flash[:success] = "投稿しました"
           redirect_to chatroom_group_path(params[:group_id])
         else
+          url = Rails.application.routes.recognize_path(request.referrer)
+          if url == {:controller=>"home", :action=>"tutorial_index_f_item"}
+            flash[:success] = "投稿に成功しました!次のページに移動し、今度はグループチャット機能を使ってみましょう！"
+            redirect_to tutorial_note_index_path
+          else
           flash[:success] = "投稿しました"
-          redirect_to root_path
+          redirect_to request.referrer || root_url
+          end
         end
     end
 
