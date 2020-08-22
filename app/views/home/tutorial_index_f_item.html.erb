@@ -1,6 +1,14 @@
-<p>お気に入り商品一覧</p>
-
 <% if @favorite_items.present? %>
+<div class="alert alert-success">お気に入り商品を投稿しましょう！投稿したい商品をチェックして[投稿]ボタンを押してください！</div>
+<div class="alert alert-dark">
+  <small>
+    1.投稿の削除は、消したい投稿にチェックを入れて、画面下に表示される[購入しました]ボタンを押してください！<br>
+    2.投稿には数量やコメントをつけることも出来ます！右側のアイコンをタップして試してみましょう♪<br/>
+    (コメントは、削除したいものをタップすることで削除することが出来ます)<br/>
+    3.画像投稿を行うことも可能です！投稿フォーム下のアイコンをタップして試してみましょう♪
+  </small>
+</div>
+<p>お気に入り商品一覧</p>
   <%= form_with url: post_favorite_items_path do |f| %>
 
     <p>-あ行-</p>
@@ -69,10 +77,11 @@
         <%= item.name %><br />
       <% end %>
 
-      <ul class="f_item_link">
-        <li><%= link_to "登録ページへ移動",new_favorite_item_path, class:"btn btn-dark favorite_back_btn" %></li>
-        <li><%= link_to "戻る",:back , class:"btn btn-dark favorite_back_btn" %></li>
-      </ul>
+    <ul>
+      <li><%= link_to "1つ前に戻る",tutorial_create_f_item_path, class:"btn btn-dark" %></li>
+      <li><%= link_to "次の項目に進む",tutorial_index_f_item_path, class:"btn btn-warning" %></li>
+      <li><%= link_to "チュートリアルを終了",root_path, class:"btn btn-dark" %></li>
+    </ul>
 
     <% if params[:group_id].present? %>
 
@@ -82,18 +91,16 @@
 
   <div class= "form_body" id="searches_form">
     <div class="form_title">投稿したい商品を選択し、投稿ボタンを押してください</div>
-
-      <div class="f_item_form">
-      <%= f.submit "投稿",class:"btn btn-primary" %>
-      </div>
-      <% end %>
+    <div class="f_item_form"><%= f.submit "投稿",class:"btn btn-primary" %></div>
+    <% end %>
   </div>
 
 <% else %>
+<p>登録中の商品がありません。下記ボタンから1つ前のページに戻り、お気に入り商品を登録してください</p>
+<ul>
+  <li><%= link_to "1つ前に戻る",tutorial_create_f_item_path, class:"btn btn-dark" %></li>
+  <li><%= link_to "次の項目に進む",tutorial_index_f_item_path, class:"btn btn-warning" %></li>
+  <li><%= link_to "チュートリアルを終了",root_path, class:"btn btn-dark" %></li>
+</ul>
 
-  <p>現在お気に入り商品はありません</p>
-  <ul class="f_item_btn">
-    <li><%= link_to "登録ページへ移動",new_favorite_item_path, class:"btn btn-dark" %></li>
-    <li><%= link_to "戻る",:back , class:"btn btn-dark" %></li>
-  </ul>
 <% end %>
