@@ -33,7 +33,7 @@ body {
   text-align: center;
   min-height: 100vh;
   margin: 0;
-  padding: 100px 0 0;
+  padding: 100px 0 100px;
   color: rgba(255, 255, 255, 0.5);
   background-color: #222222;
 }
@@ -62,12 +62,11 @@ a:hover {
 }
 
 .container-fluid {
-  padding: 0;
   margin: 0;
 }
 
-.row {
-  height: 100vh;
+.chatroom_info {
+  padding-top: 30px;
 }
 
 // @media (min-width: 577px) {
@@ -189,7 +188,7 @@ a:hover {
 }
 
 .navbar {
-  height: 75px;
+  height: 70px;
 }
 
 .dropdown-item {
@@ -220,6 +219,11 @@ a:hover {
 
 .dropdown:hover .dropdown-menu {
     display: block;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
 }
 
 .footer_item {
@@ -267,21 +271,26 @@ transform: rotate(-45deg);
 }
 
 //　広告スペース
-.Sidebar_sm {
+.promotion_sm {
   position: fixed;
   background-color: #444444;
+  border: 1px solid;
+  border-color: #222222;
   border-radius: 5px;
+  top: 0;
+  margin-top: 70px;
+  z-index: 1;
 }
 
-.SideBar_bg {
+.promotion_bg {
   background-color: #444444;
+  border: 1px solid;
+  border-color: #222222;
   border-radius: 5px;
-  height: max;
 }
 
 .top_bar {
-  top: 0;
-  margin-top: 80px;
+
 }
 
 .bottom_bar {

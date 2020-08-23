@@ -3,14 +3,14 @@
     <div class="col-md-12">
       <div class="row">
 
-        <div class="col-md-2 d-block d-md-none Sidebar_sm top_bar">
+        <div class="col-12 d-block d-md-none promotion_sm">
           <p>広告スペース(小)</p>
         </div>
-        <div class="col-md-2 d-none d-md-block SideBar_bg">
+        <div class="col-md-2 d-none d-md-block promotion_bg">
           <p>広告スペース(大)</p>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8 chatroom_info">
         <% if @own_notes.present? %>
           <%= form_with url: note_path do |f| %>
 
@@ -70,17 +70,13 @@
         <div class="col-md-2 d-block d-md-none Sidebar_sm bottom_bar">
           <p>広告スペース(小)</p>
         </div>
-        <div class="col-md-2 d-none d-md-block SideBar_bg">
+        <div class="col-md-2 d-none d-md-block promotion_bg">
           <p>広告スペース(大)</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
 
     <!-- 数量入力用モーダル -->
     <div class="modal fade" id="count_Modal" tabindex="-1" role="dialog" aria-labelledby="count_ModalLabel" aria-hidden="true">
