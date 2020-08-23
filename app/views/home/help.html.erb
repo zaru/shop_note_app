@@ -1,7 +1,6 @@
 <h4>利用手順一覧</h4><br />
 
-  <div><%= link_to "1.買い物メモの投稿","#"  %></div>
-  <div><%= link_to "2.お気に入り商品の登録","#"  %></div>
-  <div><%= link_to "3.お気に入り商品の投稿","#" %></div>
-  <div><%= link_to "4.グループの作成" ,"#" %></div>
-  <div><%= link_to "5.グループへの招待" ,"#" %></div>
+  <div class="help_Link"><%= link_to "1.買い物メモの投稿",tutorial_note_path %></div>
+  <div class="help_Link"><%= link_to "2.お気に入り商品の登録",tutorial_create_f_item_path  %></div>
+  <div class="help_Link"><%= link_to "3.お気に入り商品の投稿",tutorial_index_f_item_path %></div>
+  <div class="help_Link"><%= link_to "4.グループの作成/ユーザー招待" ,tutorial_group_create_path %></div>

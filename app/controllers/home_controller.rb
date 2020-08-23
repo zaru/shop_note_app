@@ -8,6 +8,9 @@ class HomeController < ApplicationController
     end
   end
 
+  def help
+  end
+
   def tutorial_top
   end
 
@@ -112,7 +115,8 @@ class HomeController < ApplicationController
       end
   end
 
-  def help
+  def tutorial_group_SearchUser
+    @group = Group.find(params[:id])
+    @members = @group.group_members.where(activated: true)
   end
-
 end

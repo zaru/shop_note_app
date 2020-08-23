@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "/tutorial_note_index", :to => "home#tutorial_note_index"
     get "/tutorial_create_f_item", :to => "home#tutorial_create_f_item"
     get "/tutorial_index_f_item", :to => "home#tutorial_index_f_item"
+    get "/tutorial_group_create", :to => "home#tutorial_group_create"
     get "/help", :to => "home#help"
     get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
