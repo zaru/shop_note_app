@@ -65,7 +65,7 @@
                       <li>
                         <div class="note_body">
                           <div class="note_content">
-                            <%= note.content %>
+                            <p class="note"><%= note.content %></p>
                             <% if note.image.present? %>
                               <img src="<%= note.image %>" class="note_image" >
                             <% end %>
@@ -105,7 +105,7 @@
           </div>
         </div>
         <% end %>
-      
+
         <div class="col-md-2 d-none d-md-block promotion_bg">
           <p>広告スペース(大)</p>
         </div>

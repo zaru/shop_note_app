@@ -228,7 +228,6 @@ a:hover {
 
 .footer_item {
   width: 100vw;
-  text-align:right;
   font-size: 10px;
 }
 
@@ -388,11 +387,13 @@ transform: rotate(-45deg);
 #js_count {
   width: 40px;
   height: 40px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 #js_comment {
   width: 40px;
   height: 40px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .destroy {
