@@ -1,4 +1,5 @@
 require "nkf"
+require "mechanize"
 
 class FavoriteItem < ApplicationRecord
   belongs_to :user
