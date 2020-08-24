@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = current_user.reviews.new
+    # @review = current_user.reviews.new
   end
 
   def create
