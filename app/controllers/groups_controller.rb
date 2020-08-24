@@ -14,8 +14,14 @@ class GroupsController < ApplicationController
     @group.admin_user_id = current_user.id
     if @group.save
       @group.group_members.build(user_id: current_user.id,activated: true).save
-      flash[:success]= "グループを作成しました"
-      redirect_to group_path(@group)
+      url = Rails.application.routes.recognize_path(request.referrer)
+      if url == {:controller=>"home", :action=>"tutorial_group_create"}
+        flash[:success] = "登録に成功しました！ページ下にて招待したいユーザーを検索して招待しましょう！"
+        redirect_to group_path(@group)
+      else
+        flash[:success]= "グループを作成しました"
+        redirect_to group_path(@group)
+      end
     else
       flash[:danger]= "グループ作成に失敗しました。再度やり直してください"
       render 'groups/new'

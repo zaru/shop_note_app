@@ -127,7 +127,7 @@ class FavoriteItemsController < ApplicationController
         else
           url = Rails.application.routes.recognize_path(request.referrer)
           if url == {:controller=>"home", :action=>"tutorial_index_f_item"}
-            flash[:warning] = "これでチュートリアルは終了！ページ下のボタンで移動し、アプリを使いはじめましょう！"
+            flash[:success] = "これでチュートリアルは終了！ページ下のボタンで移動し、アプリを使いはじめましょう！"
             redirect_to tutorial_note_index_path
           else
           flash[:success] = "投稿しました"
