@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :group_members
   has_many :groups, through: :group_members
   has_many :favorite_items, dependent: :destroy
+  has_many :reviews
 
   mount_uploader :image, ImageUploader
 end

@@ -46,5 +46,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :reviews
+
   end
 end
