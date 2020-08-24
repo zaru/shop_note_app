@@ -15,7 +15,7 @@
     <ul class="navbar-nav bg-dark ">
 
   <% if user_signed_in? %>
-
+　　　
       <li class="nav-item"><a class="nav-link" <%= link_to "#{current_user.name}さんがログイン中",edit_user_registration_path(current_user) %></a></li>
       <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
       <li class="nav-item dropdown">
@@ -57,7 +57,6 @@
             <% end %>
         </div>
       <li><a class= "nav-link"<%= link_to "お気に入り商品",new_favorite_item_path %></a></li>
-      <li><a class= "nav-link" <%= link_to "ヘルプ",help_path %></a></li>
   <% else %>
 
     <li class="nav-item"><a class= "nav-link" <%= link_to "ホーム",root_path %></a></li>

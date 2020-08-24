@@ -112,7 +112,7 @@ class FavoriteItemsController < ApplicationController
       params[:item][:id].each do |item_id|
         current_user.favorite_items.find_by(id: item_id).delete
       end
-      flash[:success] = "お気に入り商品を削除しました"
+      flash[:warning] = "お気に入り商品を削除しました"
       redirect_to request.referrer || new_favorite_item_path
     end
 
@@ -127,7 +127,7 @@ class FavoriteItemsController < ApplicationController
         else
           url = Rails.application.routes.recognize_path(request.referrer)
           if url == {:controller=>"home", :action=>"tutorial_index_f_item"}
-            flash[:success] = "投稿に成功しました!次のページに移動し、今度はグループチャット機能を使ってみましょう！"
+            flash[:warning] = "これでチュートリアルは終了！ページ下のボタンで移動し、アプリを使いはじめましょう！"
             redirect_to tutorial_note_index_path
           else
           flash[:success] = "投稿しました"

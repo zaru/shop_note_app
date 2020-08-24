@@ -33,7 +33,7 @@ body {
   text-align: center;
   min-height: 100vh;
   margin: 0;
-  padding: 100px 0 100px;
+  padding: 100px 0 0;
   color: rgba(255, 255, 255, 0.5);
   background-color: #222222;
 }
@@ -68,30 +68,6 @@ a:hover {
 .chatroom_info {
   padding-top: 30px;
 }
-
-// @media (min-width: 577px) {
-//     .container-fluid {
-//         width: 560px;
-//         }
-//     }
-//
-// @media (min-width: 768px) {
-//     .container-fluid {
-//         width: 760px;
-//         }
-//     }
-//
-// @media (min-width: 992px) {
-//     .container-fluid {
-//         width: 980px;
-//         }
-//     }
-//
-// @media (min-width: 1200px) {
-//     .container-fluid {
-//         width: 1190px;
-//         }
-//     }
 
 .app_title {
     margin:  0;
@@ -187,8 +163,13 @@ a:hover {
  text-align: center;
 }
 
-.navbar {
+.navbar.fixed-top {
   height: 70px;
+}
+
+
+.navbar-collapse {
+  bottom: 10px;
 }
 
 .dropdown-item {
@@ -221,16 +202,21 @@ a:hover {
     display: block;
 }
 
-.footer {
-  position: fixed;
-  bottom: 0;
-}
 
 .footer_item {
   width: 100vw;
   font-size: 10px;
 }
 
+.footer_title {
+  color: #FFA500;
+}
+
+.f_body {
+  background-color: #343a40;
+  width: 100vw;
+  height: 120px;
+}
 
 //ハンバーガーメニューアイコン
 
@@ -277,7 +263,7 @@ transform: rotate(-45deg);
   border-color: #222222;
   border-radius: 5px;
   top: 0;
-  margin-top: 70px;
+  margin-top: 75px;
   z-index: 1;
 }
 
@@ -286,15 +272,7 @@ transform: rotate(-45deg);
   border: 1px solid;
   border-color: #222222;
   border-radius: 5px;
-}
-
-.top_bar {
-
-}
-
-.bottom_bar {
-  bottom: 0;
-  margin-bottom: 170px;
+  height: 400px;
 }
 
 // 投稿フォーム
@@ -303,7 +281,7 @@ transform: rotate(-45deg);
  position: fixed;
  bottom: 0;
  width: 100%;
- height: 160px;
+ height: 120px;
  background-color: #333333;
  z-index: 1;
 }
@@ -363,8 +341,9 @@ transform: rotate(-45deg);
   margin: 5px 0;
 }
 
-.note_btn {
-  background-color: #444444;
+.btn-dark {
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 1px;
 }
 
 .btn-light {
@@ -399,10 +378,10 @@ transform: rotate(-45deg);
 .destroy {
   position: fixed;
   left: 50%;
-  bottom: 0;
+  bottom: 100px;
   transform: translate(-50%, -50%);
   display: none;
-  z-index: 5;
+  z-index: 2;
 }
 
 input[type=checkbox]:checked ~ .destroy {
