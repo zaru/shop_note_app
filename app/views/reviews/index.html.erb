@@ -1,0 +1,35 @@
+<h1>アプリレビュー一覧</h1>
+<% if @reviews.present? %>
+  <% @reviews.each do |review| %>
+    <div class="time"><%= review.created_at.to_s(:datetime) %></div>
+    <div class="review">
+      <div class="review_title">レビュータイトル : <%= review.title %></div>
+      <div class="review_content"><%= review.content %></div>
+      <% if review.rate.present? %>
+        <div>評価：<%= review.rate %>点 </div>
+      <div id="star-rate-<%= review.id %>"></div>
+      <script>
+            $('#star-rate-<%= review.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              score: <%= review.rate %>,
+          });
+      </script>
+      <% else %>
+      <p>評価なし</p>
+      <% end %>
+      </div>
+      <% if review.user_id == current_user.id %>
+      <ul>
+        <li><%= link_to "編集",edit_review_path(review.id) %></li>
+        <li><%= link_to "削除" ,"/reviews/#{review.id}", method: :delete,data:{confirm: "本当に削除しますか?"} %>
+        </li>
+      </ul>
+      <% end %>
+  <% end %>
+<% else %>
+<div class="review_none">現在レビューの投稿はありません</div>
+<% end %>
