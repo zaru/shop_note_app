@@ -1,10 +1,10 @@
 class ReviewsController < ApplicationController
   def index
-    # @reviews = Review.all
+    @reviews = Review.all
   end
 
   def new
-    @review = current_user.reviews.build
+    @review = Review.new
   end
 
   def create
