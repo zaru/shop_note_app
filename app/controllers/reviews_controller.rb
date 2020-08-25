@@ -21,24 +21,24 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    # @review = Review.find(params[:id])
+    @review = Review.find(params[:id])
   end
 
   def update
-    # @review = Review.find(params[:id])
-    #  if @review.update(title:params[:review][:title],content:params[:review][:content],rate:params[:review][:rate])
-    #    flash[:success] = "レビュー内容を変更しました"
-    #    redirect_to reviews_path
-    #  else
-    #    flash[:danger] = "レビュー内容を変更出来ませんでした、お手数ですが再度お試しください"
-    #    render 'reviews/edit'
-    #  end
+    @review = Review.find(params[:id])
+     if @review.update(title:params[:review][:title],content:params[:review][:content],rate:params[:review][:rate])
+       flash[:success] = "レビュー内容を変更しました"
+       redirect_to reviews_path
+     else
+       flash[:danger] = "レビュー内容を変更出来ませんでした、お手数ですが再度お試しください"
+       render 'reviews/edit'
+     end
   end
 
   def destroy
-    # Review.find_by(id: params[:id]).delete
-    # flash[:success] = "レビューを削除しました"
-    # redirect_to request.referrer || root_url
+    Review.find_by(id: params[:id]).delete
+    flash[:success] = "レビューを削除しました"
+    redirect_to request.referrer || root_url
   end
 
   private
