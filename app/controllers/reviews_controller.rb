@@ -8,17 +8,16 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # @review = current_user.reviews.new(review_params)
-    # @review.update(title: "タイトル記載なし") if @review.title.blank?
-    # @review.update(content: "コメント記載なし") if @review.content.blank?
-    # if @review.save
-    #   flash[:success] = "レビューを投稿しました！ご協力ありがとうございます！"
-    #   redirect_to reviews_path
-    # else
-    #   flash[:danger] = "レビューに失敗しました、お手数ですが再度お試しください"
-    #   render 'reviews/new'
-    # end
-
+    @review = current_user.reviews.new(review_params)
+    @review.update(title: "タイトル記載なし") if @review.title.blank?
+    @review.update(content: "コメント記載なし") if @review.content.blank?
+    if @review.save
+      flash[:success] = "レビューを投稿しました！ご協力ありがとうございます！"
+      redirect_to reviews_path
+    else
+      flash[:danger] = "レビューに失敗しました、お手数ですが再度お試しください"
+      render 'reviews/new'
+    end
   end
 
   def edit
