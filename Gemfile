@@ -16,8 +16,6 @@ gem 'devise-i18n'
 
 gem 'devise-i18n-views'
 
-gem 'mailcatcher'
-
 gem 'rails-i18n'
 
 gem 'bootstrap', '~> 4.3.1'
@@ -52,7 +50,7 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
 
-   gem 'sqlite3', '1.3.13'
+  gem 'sqlite3', '1.3.13'
 
   gem 'pry-rails'
 
