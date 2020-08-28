@@ -16,6 +16,8 @@ gem 'devise-i18n'
 
 gem 'devise-i18n-views'
 
+gem 'mailcatcher'
+
 gem 'rails-i18n'
 
 gem 'bootstrap', '~> 4.3.1'
@@ -33,6 +35,8 @@ gem 'carrierwave'
 gem 'rmagick'
 
 gem 'mechanize'
+
+gem 'bullet', :group => :development
 
 gem 'puma', '~> 3.7'
 
