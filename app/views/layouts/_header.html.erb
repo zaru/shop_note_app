@@ -48,9 +48,6 @@
                 <% @group_lists.each do |group| %>
                   <ul>
                     <li class="nav-link" id="group_list"><a class="group_name"><%= link_to group.group.name,chatroom_group_path(group.group.id) %></a>
-                      <% if current_user.id == group.group.admin_user_id %>
-                        <span class="delete_link"><%= link_to "削除", group_path(group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></span>
-                      <% end %>
                     </li>
                   </ul>
                 <% end %>

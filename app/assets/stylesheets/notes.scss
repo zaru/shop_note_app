@@ -1,14 +1,19 @@
 //投稿一覧
 
+// .note {
+//   min-width: 250px;
+//   min-height: 20px;
+// }
+
 .note_body {
-  width: 160px;
-  height: 20px;
+  min-width: 160px;
+  min-height: 20px;
 }
 
 .note_content {
   font-size: 20px;
   border-bottom: solid 1px black;
-  height: 40px;
+  min-height: 40px;
 }
 
 .note {
@@ -29,6 +34,8 @@
 }
 
 .note_image {
-  height :60px;
-  width :80px;
+  height :65px;
+  width :65px;
+  border-radius: 15px;
+  padding-bottom: 5px;
 }

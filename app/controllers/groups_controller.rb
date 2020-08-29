@@ -42,8 +42,9 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     Group.find(params[:id]).destroy
-    flash[:success] = "削除しました"
+    flash[:success] = "グループを削除しました"
     redirect_to root_path
   end
 
@@ -80,7 +81,7 @@ class GroupsController < ApplicationController
   def chatroom
     @group = Group.find(params[:id])
     @notes = Note.find_by(id: params[:id])
-    @group_notes = Note.where(group_id: @group.id)
+    @group_notes = Note.includes([:user]).where(group_id: @group.id)
     @members = @group.users.select(:name)
   end
 

@@ -27,6 +27,8 @@
     </div>
   <% end %>
 
+<button class="btn btn-warning"><%= link_to "削除", group_path(@group.id), method: :delete,data:{confirm: "本当に削除しますか?"} %></button>
+
 </div>
 
 <script type="text/javascript">

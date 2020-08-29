@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
     def group_list
       if user_signed_in?
-        @group_lists = current_user.group_members.where(activated: true)
+        @group_lists = current_user.group_members.includes([:group]).where(activated: true)
         if @group_lists.present?
           @group_lists
         else

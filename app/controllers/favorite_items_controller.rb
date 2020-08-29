@@ -131,7 +131,7 @@ class FavoriteItemsController < ApplicationController
             redirect_to tutorial_note_index_path
           else
           flash[:success] = "投稿しました"
-          redirect_to request.referrer || root_url
+          redirect_to root_url
           end
         end
     end
