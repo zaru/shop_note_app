@@ -14,6 +14,7 @@
           </div>
 
           <div class="col-md-8 chatroom_info">
+            <!-- MEMO: ここの分岐もパーシャルにした方が良い -->
           <%= form_with url: note_path do |f| %>
 
             <% if @own_notes.present? %>
