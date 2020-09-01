@@ -25,6 +25,7 @@ class GroupsController < ApplicationController
     else
       flash[:danger]= "グループ作成に失敗しました。再度やり直してください"
       render 'groups/new'
+# MEMO: 全角スペースが紛れ込んでいる。エディタで全角文字を可視化する設定をした方が良い
 　　 end
   end
 
