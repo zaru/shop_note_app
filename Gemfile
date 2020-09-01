@@ -28,6 +28,7 @@ gem 'font-awesome-rails'
 
 gem 'kaminari'
 
+# MEMO: 最近あんまり更新されてないのかなー？
 gem 'carrierwave'
 
 gem 'rmagick'

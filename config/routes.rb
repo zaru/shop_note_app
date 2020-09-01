@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   }
 
 
+  # MEMO: devise_scope はあくまで devise が作るルーティングをカスタマイズするためのもののはず
+  # つまり、独自のルーティングはこのブロックの中にある必要はない
+  # また devise_for も内部で devise_scope を呼び出しているので、devise_scope のみでも良さそう
   devise_scope :user do
     get 'users/index', to: 'users/registrations#index'
     root 'home#index'

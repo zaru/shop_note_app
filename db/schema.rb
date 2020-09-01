@@ -10,6 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+# MEMO: zaru 外部キー制約をつけた方がよさそう
+#
+# MEMO: zaru 各フィールドにコメントをつけると他の人の理解度が上がるかもしれない
+#
+# MEMO: 基本は NOT NULL or NOT NULL DEFAULT を設定する方がいいと思う
+# https://ja.stackoverflow.com/questions/51677/%E3%83%95%E3%83%A9%E3%82%B0%E9%A0%85%E7%9B%AE%E3%81%AB-not-null-%E5%88%B6%E7%B4%84%E3%82%92%E4%BB%98%E4%B8%8E%E3%81%97%E3%81%AA%E3%81%84%E7%90%86%E7%94%B1/51678
 ActiveRecord::Schema.define(version: 20200824084012) do
 
   create_table "comments", force: :cascade do |t|
