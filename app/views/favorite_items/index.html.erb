@@ -1,6 +1,6 @@
 <p>お気に入り商品一覧</p>
 
-<% if @favorite_items.present? %>
+<% if @item_exists %>
 
   <%= form_with url: post_favorite_items_path do |f| %>
 

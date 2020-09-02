@@ -3,7 +3,7 @@ class FavoriteItemsController < ApplicationController
     before_action :correct_user, only: [:destroy]
 
     def index
-      @favorite_items = current_user.favorite_items.all
+      favorite_items = current_user.favorite_items.all
       a_line = []
       k_line = []
       s_line = []
@@ -16,7 +16,7 @@ class FavoriteItemsController < ApplicationController
       w_line = []
       other_line = []
 
-      @favorite_items.each do |item|
+      favorite_items.each do |item|
         i_initial = NKF.nkf("-h1 -w",item.name[0]).tr("A-Z0-9","Ａ-Ｚ０-９")
           if ["あ","い","う","え","お","a","i","u","e","o","A","I","U","E","O"].include?(i_initial)
             a_line << item
@@ -43,6 +43,7 @@ class FavoriteItemsController < ApplicationController
           end
       end
 
+      @item_exists = favorite_items.present?
       @favorite_item_groups = [
         { idx: "あ行", items: a_line },
         { idx: "か行", items: k_line },
