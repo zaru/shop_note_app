@@ -6,10 +6,12 @@ class GroupsController < ApplicationController
 
 
   def index
+    # MEMO: ここで params とってきているけど意味はない
     @groups = current_user.groups.where(params[:id])
   end
 
   def create
+    # MEMO: 複数のリソースを同時に操作しているのでトランザクションが必要
     @group = Group.new(group_params)
     @group.admin_user_id = current_user.id
     if @group.save
@@ -35,6 +37,7 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
+     # MEMO: params オブジェクトだけで OK
      if @group.update(name:params[:group][:name],profile:params[:group][:profile],image:params[:group][:image])
        redirect_to group_path(@group)
      else
@@ -92,6 +95,7 @@ class GroupsController < ApplicationController
   private
 
     def correct_user
+      # MEMO: おそらくまだ実装中だと思うが、リクエストしているユーザの情報を使う場合は params 自体が必要なく、盲目的に current_user を使う方が良い
       unless params[:user_id].to_i == current_user.id
         flash[:danger] = "本人でないためグループリクエストの承認が出来ません"
         redirect_to request.referrer || root_url
@@ -99,6 +103,7 @@ class GroupsController < ApplicationController
     end
 
     def admin_user
+      # MEMO: user モデルのメソッドで管理者かどうかをチェックするメソッドを作った方が良い
       group = current_user.groups.find(params[:id])
       unless group.admin_user_id == current_user.id
         flash[:danger] = "管理者権限がないため実行出来ません"
