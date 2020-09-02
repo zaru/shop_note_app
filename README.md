@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+#MEMO: ローカルとプロダクションの構成をなるべく合わせた方が良い
+#MEMO: frozen_string_literal をつけてもいいかもしれない
+#MEMO: public/uploads は gitignore 
+#MEMO: 初手から rubocop をいれる
