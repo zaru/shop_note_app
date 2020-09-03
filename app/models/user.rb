@@ -30,29 +30,30 @@ class User < ApplicationRecord
 
     favorite_items.each do |item|
       i_initial = NKF.nkf("-h1 -w",item.name[0]).tr("A-Z0-9","Ａ-Ｚ０-９")
-        if ["あ","い","う","え","お","a","i","u","e","o","A","I","U","E","O"].include?(i_initial)
+      case
+      when ["あ","い","う","え","お","a","i","u","e","o","A","I","U","E","O"].include?(i_initial)
           a_line << item
-        elsif ["か","き","く","け","こ","が","ぎ","ぐ","げ","ご","c","k","q","C","K","Q"].include?(i_initial)
+      when ["か","き","く","け","こ","が","ぎ","ぐ","げ","ご","c","k","q","C","K","Q"].include?(i_initial)
           k_line << item
-        elsif ["さ","し","す","せ","そ","ざ","じ","ず","ぜ","ぞ","s","z","S","Z"].include?(i_initial)
+      when ["さ","し","す","せ","そ","ざ","じ","ず","ぜ","ぞ","s","z","S","Z"].include?(i_initial)
           s_line << item
-        elsif ["た","ち","つ","て","と","だ","ぢ","づ","で","ど","t","d","T","D"].include?(i_initial)
+      when ["た","ち","つ","て","と","だ","ぢ","づ","で","ど","t","d","T","D"].include?(i_initial)
           t_line << item
-        elsif ["な","に","ぬ","ね","の","n","N"].include?(i_initial)
+      when ["な","に","ぬ","ね","の","n","N"].include?(i_initial)
           n_line << item
-        elsif ["は","ひ","ふ","へ","ほ","ば","び","ぶ","べ","ぼ","h","b","H","B"].include?(i_initial)
+      when ["は","ひ","ふ","へ","ほ","ば","び","ぶ","べ","ぼ","h","b","H","B"].include?(i_initial)
           h_line << item
-        elsif ["ま","み","む","め","も","m","M"].include?(i_initial)
+      when ["ま","み","む","め","も","m","M"].include?(i_initial)
           m_line << item
-        elsif ["や","ゆ","よ","y","Y"].include?(i_initial)
+      when ["や","ゆ","よ","y","Y"].include?(i_initial)
           y_line << item
-        elsif ["ら","り","る","れ","ろ","l","r","L","R"].include?(i_initial)
+      when ["ら","り","る","れ","ろ","l","r","L","R"].include?(i_initial)
           r_line << item
-        elsif ["わ","を","ん"].include?(i_initial)
+      when ["わ","を","ん"].include?(i_initial)
           w_line << item
-        else
+      else
           other_line << item
-        end
+      end
     end
 
     [
