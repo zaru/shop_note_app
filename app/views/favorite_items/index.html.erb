@@ -4,9 +4,9 @@
 
   <%= form_with url: post_favorite_items_path do |f| %>
 
-    <% @favorite_item_groups.each do |item_group| %>
-      <p>-<%= item_group[:idx] %>-</p>
-      <% item_group[:items].each do |item| %>
+    <% @favorite_item_groups.each do |key, items| %>
+      <p>-<%= key %>-</p>
+      <% items.each do |item| %>
         <%= check_box_tag 'item[id][]', item.id, checked = false, :id => "item_#{item.id}" %>
         <%= item.name %>
       <% end %><br/>
