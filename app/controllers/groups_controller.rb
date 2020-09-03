@@ -12,23 +12,26 @@ class GroupsController < ApplicationController
 
   def create
     # MEMO: 複数のリソースを同時に操作しているのでトランザクションが必要
-    @group = Group.new(group_params)
-    @group.admin_user_id = current_user.id
-    if @group.save
-      @group.group_members.build(user_id: current_user.id,activated: true).save
-      url = Rails.application.routes.recognize_path(request.referrer)
-      if url == {:controller=>"home", :action=>"tutorial_group_create"}
-        flash[:success] = "登録に成功しました！ページ下にて招待したいユーザーを検索して招待しましょう！"
-        redirect_to group_path(@group)
-      else
-        flash[:success]= "グループを作成しました"
-        redirect_to group_path(@group)
-      end
+    ActiveRecord::Base.transaction do
+      @group = current_user.own_groups.new(group_params)
+      @group.save!
+
+      group_member = @group.group_members.build(user_id: current_user.id, activated: true)
+      group_member.save!
+    end
+    url = Rails.application.routes.recognize_path(request.referrer)
+    if url == {:controller=>"home", :action=>"tutorial_group_create"}
+      flash[:success] = "登録に成功しました！ページ下にて招待したいユーザーを検索して招待しましょう！"
+      redirect_to group_path(@group)
     else
-      flash[:danger]= "グループ作成に失敗しました。再度やり直してください"
-      render 'groups/new'
+      flash[:success]= "グループを作成しました"
+      redirect_to group_path(@group)
+    end
+  rescue => e
+    flash[:danger]= "グループ作成に失敗しました。再度やり直してください"
+    render 'groups/new'
 # MEMO: 全角スペースが紛れ込んでいる。エディタで全角文字を可視化する設定をした方が良い
-　　 end
+# 　　 end
   end
 
   def edit
