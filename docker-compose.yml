@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - LANG=C.UTF-8
+      - EDITOR=vim
+    ports:
+      - "3000:3000"
+    tty: true
+    volumes:
+      - .:/myapp:cached
+      - bundle:/usr/local/bundle
+volumes:
+  bundle:
