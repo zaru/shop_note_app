@@ -22,11 +22,10 @@ class GroupsController < ApplicationController
     url = Rails.application.routes.recognize_path(request.referrer)
     if url == {:controller=>"home", :action=>"tutorial_group_create"}
       flash[:success] = "登録に成功しました！ページ下にて招待したいユーザーを検索して招待しましょう！"
-      redirect_to group_path(@group)
     else
       flash[:success]= "グループを作成しました"
-      redirect_to group_path(@group)
     end
+    redirect_to group_path(@group)
   rescue => e
     flash[:danger]= "グループ作成に失敗しました。再度やり直してください"
     render 'groups/new'
