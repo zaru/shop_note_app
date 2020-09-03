@@ -39,12 +39,11 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-     # MEMO: params オブジェクトだけで OK
-     if @group.update(name:params[:group][:name],profile:params[:group][:profile],image:params[:group][:image])
-       redirect_to group_path(@group)
-     else
-       render 'groups/edit'
-     end
+    if @group.update(group_params)
+      redirect_to group_path(@group)
+    else
+      render 'groups/edit'
+    end
   end
 
   def destroy
@@ -121,7 +120,7 @@ class GroupsController < ApplicationController
     # end
 
     def group_params
-      params.permit(:image,:name,:profile)
+      params.require(:group).permit(:name, :profile, :image)
     end
 
     def join_params
