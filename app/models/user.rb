@@ -30,26 +30,26 @@ class User < ApplicationRecord
 
     favorite_items.each do |item|
       i_initial = NKF.nkf("-h1 -w",item.name[0]).tr("A-Z0-9","Ａ-Ｚ０-９")
-      case
-      when ["あ","い","う","え","お","a","i","u","e","o","A","I","U","E","O"].include?(i_initial)
+      case i_initial
+      when "あ","い","う","え","お","a","i","u","e","o","A","I","U","E","O"
           a_line << item
-      when ["か","き","く","け","こ","が","ぎ","ぐ","げ","ご","c","k","q","C","K","Q"].include?(i_initial)
+      when "か","き","く","け","こ","が","ぎ","ぐ","げ","ご","c","k","q","C","K","Q"
           k_line << item
-      when ["さ","し","す","せ","そ","ざ","じ","ず","ぜ","ぞ","s","z","S","Z"].include?(i_initial)
+      when "さ","し","す","せ","そ","ざ","じ","ず","ぜ","ぞ","s","z","S","Z"
           s_line << item
-      when ["た","ち","つ","て","と","だ","ぢ","づ","で","ど","t","d","T","D"].include?(i_initial)
+      when "た","ち","つ","て","と","だ","ぢ","づ","で","ど","t","d","T","D"
           t_line << item
-      when ["な","に","ぬ","ね","の","n","N"].include?(i_initial)
+      when "な","に","ぬ","ね","の","n","N"
           n_line << item
-      when ["は","ひ","ふ","へ","ほ","ば","び","ぶ","べ","ぼ","h","b","H","B"].include?(i_initial)
+      when "は","ひ","ふ","へ","ほ","ば","び","ぶ","べ","ぼ","h","b","H","B"
           h_line << item
-      when ["ま","み","む","め","も","m","M"].include?(i_initial)
+      when "ま","み","む","め","も","m","M"
           m_line << item
-      when ["や","ゆ","よ","y","Y"].include?(i_initial)
+      when "や","ゆ","よ","y","Y"
           y_line << item
-      when ["ら","り","る","れ","ろ","l","r","L","R"].include?(i_initial)
+      when "ら","り","る","れ","ろ","l","r","L","R"
           r_line << item
-      when ["わ","を","ん"].include?(i_initial)
+      when "わ","を","ん"
           w_line << item
       else
           other_line << item
