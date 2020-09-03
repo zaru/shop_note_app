@@ -10,6 +10,10 @@ class GroupsController < ApplicationController
     @groups = current_user.groups.where(params[:id])
   end
 
+  def new
+    @group = current_user.own_groups.new
+  end
+
   def create
     # MEMO: 複数のリソースを同時に操作しているのでトランザクションが必要
     ActiveRecord::Base.transaction do
