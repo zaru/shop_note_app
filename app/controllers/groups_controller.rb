@@ -85,6 +85,7 @@ class GroupsController < ApplicationController
   def chatroom
     @group = Group.find(params[:id])
     @notes = Note.find_by(id: params[:id])
+    # MEMO: N+1 になっているので :comments も includes させる
     @group_notes = Note.includes([:user]).where(group_id: @group.id)
     @members = @group.users.select(:name)
   end
