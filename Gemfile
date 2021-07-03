@@ -28,6 +28,7 @@ gem 'font-awesome-rails'
 
 gem 'kaminari'
 
+# MEMO: 最近あんまり更新されてないのかなー？
 gem 'carrierwave'
 
 gem 'rmagick'
@@ -78,3 +79,6 @@ group :production do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'rubocop'
+gem 'rubocop-rails'

@@ -9,7 +9,10 @@ class User < ApplicationRecord
   has_many :group_members
   has_many :groups, through: :group_members
   has_many :favorite_items, dependent: :destroy
+  # MEMO: dependent: :destroy がないので user を削除しても残る、レビューを残したいなら nullify 指定が良い
   has_many :reviews
+  # MEMO: キーの違うモデルをリレーションしたい場合
+  has_many :own_groups, class_name: 'Group', foreign_key: :admin_user_id
 
   mount_uploader :image, ImageUploader
 end

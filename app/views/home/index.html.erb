@@ -1,3 +1,4 @@
+<!-- MEMO: サインイン前とサインイン後の view ファイルを分けた方が見通しが良さそう -->
 <%if user_signed_in? %>
 
   <div class="container-fluid">
@@ -13,6 +14,7 @@
           </div>
 
           <div class="col-md-8 chatroom_info">
+            <!-- MEMO: ここの分岐もパーシャルにした方が良い -->
           <%= form_with url: note_path do |f| %>
 
             <% if @own_notes.present? %>
@@ -133,6 +135,11 @@
   </div>
 
   <script type="text/javascript">
+    // MEMO: Bootstarap はモーダルを開いた時のコールバックが設定できるのでこっちのが良い
+    // $('#count_Modal').on('show.bs.modal', function(event) {
+    //   console.log('open modal');
+    //   console.log(event.relatedTarget);
+    // });
   $('.js_count_btn').click(function() {
   $('#count_id').val(this.value);
   });

@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     end
   end
 
+  # MEMO: Rails の controller には標準の CRUD アクション以外は作らない方がシンプルに保てる
   def help
   end
 
@@ -16,6 +17,7 @@ class HomeController < ApplicationController
 
   def tutorial_note_index
     if current_user.present?
+      # MEMO: all は必要ない
       @own_notes = current_user.notes.all
     else
       @own_notes = []

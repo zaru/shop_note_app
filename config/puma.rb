@@ -47,6 +47,8 @@ preload_app!
 # or connections that may have been created at application boot, as Ruby
 # cannot share connections between processes.
 #
+# MEMO: zaru 5.2 からは必要なくなる
+# https://github.com/rails/rails/pull/31241
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end

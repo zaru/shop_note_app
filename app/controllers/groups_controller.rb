@@ -6,26 +6,35 @@ class GroupsController < ApplicationController
 
 
   def index
+    # MEMO: ここで params とってきているけど意味はない
     @groups = current_user.groups.where(params[:id])
   end
 
+  def new
+    @group = current_user.own_groups.new
+  end
+
   def create
-    @group = Group.new(group_params)
-    @group.admin_user_id = current_user.id
-    if @group.save
-      @group.group_members.build(user_id: current_user.id,activated: true).save
-      url = Rails.application.routes.recognize_path(request.referrer)
-      if url == {:controller=>"home", :action=>"tutorial_group_create"}
-        flash[:success] = "登録に成功しました！ページ下にて招待したいユーザーを検索して招待しましょう！"
-        redirect_to group_path(@group)
-      else
-        flash[:success]= "グループを作成しました"
-        redirect_to group_path(@group)
-      end
+    # MEMO: 複数のリソースを同時に操作しているのでトランザクションが必要
+    ActiveRecord::Base.transaction do
+      @group = current_user.own_groups.new(group_params)
+      @group.save!
+
+      group_member = @group.group_members.build(user_id: current_user.id, activated: true)
+      group_member.save!
+    end
+    url = Rails.application.routes.recognize_path(request.referrer)
+    if url == {:controller=>"home", :action=>"tutorial_group_create"}
+      flash[:success] = "登録に成功しました！ページ下にて招待したいユーザーを検索して招待しましょう！"
     else
-      flash[:danger]= "グループ作成に失敗しました。再度やり直してください"
-      render 'groups/new'
-　　 end
+      flash[:success]= "グループを作成しました"
+    end
+    redirect_to group_path(@group)
+  rescue => e
+    flash[:danger]= "グループ作成に失敗しました。再度やり直してください"
+    render 'groups/new'
+# MEMO: 全角スペースが紛れ込んでいる。エディタで全角文字を可視化する設定をした方が良い
+# 　　 end
   end
 
   def edit
@@ -34,11 +43,11 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-     if @group.update(name:params[:group][:name],profile:params[:group][:profile],image:params[:group][:image])
-       redirect_to group_path(@group)
-     else
-       render 'groups/edit'
-     end
+    if @group.update(group_params)
+      redirect_to group_path(@group)
+    else
+      render 'groups/edit'
+    end
   end
 
   def destroy
@@ -81,6 +90,7 @@ class GroupsController < ApplicationController
   def chatroom
     @group = Group.find(params[:id])
     @notes = Note.find_by(id: params[:id])
+    # MEMO: N+1 になっているので :comments も includes させる
     @group_notes = Note.includes([:user]).where(group_id: @group.id)
     @members = @group.users.select(:name)
   end
@@ -91,6 +101,7 @@ class GroupsController < ApplicationController
   private
 
     def correct_user
+      # MEMO: おそらくまだ実装中だと思うが、リクエストしているユーザの情報を使う場合は params 自体が必要なく、盲目的に current_user を使う方が良い
       unless params[:user_id].to_i == current_user.id
         flash[:danger] = "本人でないためグループリクエストの承認が出来ません"
         redirect_to request.referrer || root_url
@@ -98,6 +109,7 @@ class GroupsController < ApplicationController
     end
 
     def admin_user
+      # MEMO: user モデルのメソッドで管理者かどうかをチェックするメソッドを作った方が良い
       group = current_user.groups.find(params[:id])
       unless group.admin_user_id == current_user.id
         flash[:danger] = "管理者権限がないため実行出来ません"
@@ -112,7 +124,7 @@ class GroupsController < ApplicationController
     # end
 
     def group_params
-      params.permit(:image,:name,:profile)
+      params.require(:group).permit(:name, :profile, :image)
     end
 
     def join_params
